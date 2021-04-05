@@ -1,10 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import './canvas.css';
 import React, { useRef, useEffect } from 'react';
-
-const PI = Math.PI;
-const cos = Math.cos;
-const sin = Math.sin;
+import { flat_hex_corner } from './library'
 
 
 function App() {
@@ -12,13 +10,39 @@ function App() {
   return <Canvas />
 
 }
+/*
 
-/* function flat_hex_corner(center, size, i) {
-  var angle_deg = 60 * i
-  var angle_rad = PI / 180 * angle_deg
-  return Point(center.x + size * cos(angle_rad),
-    center.y + size * sin(angle_rad))
-} */
+export default class Canvas extends React.Component {
+
+  state = { hexSize: 50, hexOrigin: (x: 100, y: 130)}
+
+  componentWillMount() {
+
+    this.state({
+      canvasSize: { canvasWidth: 800, canvasHigh: 600 }
+    })
+  }
+
+}
+
+*/
+
+
+
+function flat_hex_total(point) {
+
+
+  let coordtt = test.map((coord) => { flat_hex_corner() })
+
+  let week = ["caca", "caca2"];
+
+  let week2 = week.map((day) => {
+    return (<li>{day}</li>)
+  })
+
+}
+
+/*
 
 const Canvas = props => {
 
@@ -36,6 +60,13 @@ const Canvas = props => {
     ctx.beginPath()
     ctx.arc(200, 100, 20, 0, 2 * PI)
     ctx.fill()
+
+    ctx.beginPath()
+    ctx.moveTo(flat_hex_corner(200, 50, 1)[0], flat_hex_corner(200, 50, 1)[1])
+    ctx.lineTo(flat_hex_corner(200, 50, 2)[0], flat_hex_corner(200, 50, 2)[2])
+    ctx.lineTo(flat_hex_corner(200, 50, 3)[0], flat_hex_corner(200, 50, 3)[2])
+    ctx.fill();
+    //ctx.lineTo(flat_hex_corner(200, 50, 1))
   }
 
 
@@ -52,76 +83,7 @@ const Canvas = props => {
 
   return <canvas ref={canvasRef} {...props} />
 }
-
-
-/* function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          CHILDREN OF PROUT
-        </p>
-        <p>
-          {display()}
-          //{ Commande pour afficher result foncton display dans le HTML, mettre des {} pour signifier que c'est du JS}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-} 
 
 */
-
-/* const Canvas = props => {
-
-  const canvasRef = useRef(null)
-
-  const draw = ctx => {
-    ctx.fillStyle = '#000000'
-    ctx.beginPath()
-    ctx.arc(50, 100, 20, 0, 2 * Math.PI)
-    ctx.fill()
-  }
-
-  useEffect(() => {
-
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-
-    //Our draw come here
-    draw(context)
-  }, [draw])
-
-  return <canvas ref={canvasRef} {...props} />
-} */
-
-function display(prout) {
-
-  let week = ["caca", "caca2"];
-
-  let week2 = week.map((day) => {
-    return (<li>{day}</li>)
-  })
-
-  return (week2)
-
-
-}
-
-/* const gestion_week = (nbjour) => { } */
-
-/* test */
-
-
-
 
 export default App;
