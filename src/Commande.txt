@@ -1,0 +1,7 @@
+
+Pour effectuer un test de fonction :
+
+1) Importer la fonction dans App.test.js
+2) Ajouter console.log(fonction())
+
+npm run testnode 
