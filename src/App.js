@@ -27,19 +27,20 @@ function App() {
   );
 }
 
-function display(week) {
+function display(prout) {
+
+  let week = ["text","test"];
 
   let week2 = week.map((day) => {
     return (<li>{day}</li>)
   })
-
 
   return (week2)
 
 
 }
 
-const gestion_week = (nbjour) => { }
+/* const gestion_week = (nbjour) => { } */
 
 
 
