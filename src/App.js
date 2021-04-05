@@ -6,8 +6,18 @@ function App() {
   let style = {background: 'red'} 
   return (
     <div className="App">
-      <div style={style}>HAAAAAAA</div>
-    </div>
+<div class="container">
+<div class="one">
+</div>
+<div class="two">
+</div>
+<div class="three">
+</div>
+<div class="four">
+</div>
+<div class="five">
+</div>
+</div>    </div>
   );
 }
 
