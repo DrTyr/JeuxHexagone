@@ -8,7 +8,11 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          CHILDREN OF PROUT
+        </p>
+        <p>
+          {display()}
+          {/* Commande pour afficher result foncton display dans le HTML, mettre des {} pour signifier que c'est du JS  */}
         </p>
         <a
           className="App-link"
@@ -22,5 +26,24 @@ function App() {
     </div>
   );
 }
+
+function display(week) {
+
+  let week2 = week.map((day) => {
+    return (<li>{day}</li>)
+  })
+
+
+  return (week2)
+
+
+}
+
+const gestion_week = (nbjour) => { }
+
+
+
+
+
 
 export default App;
