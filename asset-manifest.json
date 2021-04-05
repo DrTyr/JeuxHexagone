@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/drtyr/JeuxHexagone/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/drtyr/JeuxHexagone/static/js/main.f85f342b.chunk.js",
-    "main.js.map": "/drtyr/JeuxHexagone/static/js/main.f85f342b.chunk.js.map",
-    "runtime-main.js": "/drtyr/JeuxHexagone/static/js/runtime-main.6e7fd84c.js",
-    "runtime-main.js.map": "/drtyr/JeuxHexagone/static/js/runtime-main.6e7fd84c.js.map",
-    "static/js/2.b10b85c1.chunk.js": "/drtyr/JeuxHexagone/static/js/2.b10b85c1.chunk.js",
-    "static/js/2.b10b85c1.chunk.js.map": "/drtyr/JeuxHexagone/static/js/2.b10b85c1.chunk.js.map",
-    "static/js/3.7fad3f2e.chunk.js": "/drtyr/JeuxHexagone/static/js/3.7fad3f2e.chunk.js",
-    "static/js/3.7fad3f2e.chunk.js.map": "/drtyr/JeuxHexagone/static/js/3.7fad3f2e.chunk.js.map",
-    "index.html": "/drtyr/JeuxHexagone/index.html",
-    "static/css/main.9d5b29c0.chunk.css.map": "/drtyr/JeuxHexagone/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.b10b85c1.chunk.js.LICENSE.txt": "/drtyr/JeuxHexagone/static/js/2.b10b85c1.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/drtyr/JeuxHexagone/static/media/logo.6ce24c58.svg"
+    "main.css": "/JeuxHexagone/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/JeuxHexagone/static/js/main.f85f342b.chunk.js",
+    "main.js.map": "/JeuxHexagone/static/js/main.f85f342b.chunk.js.map",
+    "runtime-main.js": "/JeuxHexagone/static/js/runtime-main.f6b87401.js",
+    "runtime-main.js.map": "/JeuxHexagone/static/js/runtime-main.f6b87401.js.map",
+    "static/js/2.b10b85c1.chunk.js": "/JeuxHexagone/static/js/2.b10b85c1.chunk.js",
+    "static/js/2.b10b85c1.chunk.js.map": "/JeuxHexagone/static/js/2.b10b85c1.chunk.js.map",
+    "static/js/3.7fad3f2e.chunk.js": "/JeuxHexagone/static/js/3.7fad3f2e.chunk.js",
+    "static/js/3.7fad3f2e.chunk.js.map": "/JeuxHexagone/static/js/3.7fad3f2e.chunk.js.map",
+    "index.html": "/JeuxHexagone/index.html",
+    "static/css/main.9d5b29c0.chunk.css.map": "/JeuxHexagone/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.b10b85c1.chunk.js.LICENSE.txt": "/JeuxHexagone/static/js/2.b10b85c1.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/JeuxHexagone/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.6e7fd84c.js",
+    "static/js/runtime-main.f6b87401.js",
     "static/js/2.b10b85c1.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
     "static/js/main.f85f342b.chunk.js"
