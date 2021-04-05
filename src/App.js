@@ -1,8 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
-
+import React, { useRef, useEffect } from 'react';
 
 function App() {
+
+  return <Canvas />
+
+}
+
+
+const Canvas = props => {
+
+  const canvasRef = useRef(null)
+
+  const draw = ctx => {
+    ctx.fillStyle = '#000000'
+    ctx.beginPath()
+    ctx.arc(50, 100, 20, 0, 2 * Math.PI)
+    ctx.fill()
+  }
+
+  useEffect(() => {
+
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+
+    //Our draw come here
+    draw(context)
+  }, [draw])
+
+  return <canvas ref={canvasRef} {...props} />
+}
+
+
+/* function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -12,7 +43,7 @@ function App() {
         </p>
         <p>
           {display()}
-          {/* Commande pour afficher result foncton display dans le HTML, mettre des {} pour signifier que c'est du JS  */}
+          //{ Commande pour afficher result foncton display dans le HTML, mettre des {} pour signifier que c'est du JS}
         </p>
         <a
           className="App-link"
@@ -25,11 +56,36 @@ function App() {
       </header>
     </div>
   );
-}
+} 
+
+*/
+
+/* const Canvas = props => {
+
+  const canvasRef = useRef(null)
+
+  const draw = ctx => {
+    ctx.fillStyle = '#000000'
+    ctx.beginPath()
+    ctx.arc(50, 100, 20, 0, 2 * Math.PI)
+    ctx.fill()
+  }
+
+  useEffect(() => {
+
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+
+    //Our draw come here
+    draw(context)
+  }, [draw])
+
+  return <canvas ref={canvasRef} {...props} />
+} */
 
 function display(prout) {
 
-  let week = ["text","test"];
+  let week = ["caca", "caca2"];
 
   let week2 = week.map((day) => {
     return (<li>{day}</li>)
