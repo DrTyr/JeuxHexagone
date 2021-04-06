@@ -10,7 +10,7 @@ export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hexSize: 40,
+            hexSize: 30,
             firstHexCenter: { x: 50, y: 50 },
             nbHexInGrid: 50,
             nbHexInColumn: 8,
@@ -88,6 +88,25 @@ export default class Canvas extends React.Component {
         }
     }
 
+    //New Method to draw the hexagone (WIP)
+    drawHex2(canvasID, center) {
+
+    }
+
+
+    //New Method to calculate all hex point coordonate and draw (WIP)
+    getAllCoordOfOneHex(center) {
+        let coordHexSummitx = [];
+        let coordHexSummity = [];
+
+        for (let i = 0; i <= 5; i++) {
+            coordHexSummitx[i] = this.getHexCornerCoord(center, i).x;
+            coordHexSummity[i] = this.getHexCornerCoord(center, i).y;
+        };
+        //this.drawLine(canvasID, { x: start.x, y: start.y }, { x: end.x, y: end.y });
+        return this.Point(coordHexSummitx, coordHexSummity);
+    }
+
     //Method to calculate the coordinate of  a sommit from the center
     getHexCornerCoord(center, i) {
 
@@ -112,6 +131,20 @@ export default class Canvas extends React.Component {
         ctx.stroke();
         ctx.closePath();
     }
+
+    //New Method to draw between two point (start{x,y} and end{x,y}) (WIP)
+    drawLine2(canvasID, point) {
+        const ctx = canvasID.getContext("2d");
+        ctx.beginPath();
+        for (let i = 0; i <= 5; i++) {
+            ctx.moveTo(point.x[i], point.y[i]);
+            ctx.lineTo(point.x[i], point.y[i]);
+        }
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    //New Method to draw the hexagone (WIP)
 
     render() {
         return (
