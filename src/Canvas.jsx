@@ -10,11 +10,11 @@ export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hexSize: 20,
+            hexSize: 40,
             firstHexCenter: { x: 50, y: 50 },
             nbHexInGrid: 50,
-            nbHexInLine: 10,
-            nbColumn: 5
+            nbHexInColumn: 8,
+            nbColumn: 8
         }
     }
 
@@ -39,7 +39,7 @@ export default class Canvas extends React.Component {
 
     //Method to draw ood columns
     drawGridOddColumn(canvasID, center) {
-        for (let i = 0; i <= this.state.nbColumn; i++) {
+        for (let i = 0; i <= this.state.nbColumn / 2; i++) {
             this.drawGridColumn(
                 this.canvasHex, {
 
@@ -50,8 +50,8 @@ export default class Canvas extends React.Component {
     }
 
     //Method to draw even columns
-    drawGridEvenColum(ncanvasID, center) {
-        for (let i = 0; i <= this.state.nbColumn; i++) {
+    drawGridEvenColumn(ncanvasID, center) {
+        for (let i = 0; i <= this.state.nbColumn / 2 - 1; i++) {
             this.drawGridColumn(
                 this.canvasHex, {
 
@@ -69,7 +69,7 @@ export default class Canvas extends React.Component {
 
     //Method to draw a column
     drawGridColumn(canvasID, center) {
-        for (let i = 0; i <= this.state.nbHexInLine; i++) {
+        for (let i = 0; i <= this.state.nbHexInColumn; i++) {
             this.drawHex(
                 this.canvasHex,
                 {
@@ -120,4 +120,6 @@ export default class Canvas extends React.Component {
             </div >
         )
     }
+
+
 }
