@@ -10,7 +10,11 @@ export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hexSize: 20
+            hexSize: 20,
+            firstHexCenter: { x: 50, y: 50 },
+            nbHexInGrid: 50,
+            nbHexInLine: 10,
+            nbColumn: 5
         }
     }
 
@@ -21,12 +25,61 @@ export default class Canvas extends React.Component {
     }
 
     componentDidMount() {
-        const { canvasWidth, canvasHeight } = this.state.canvasSize;
+        const { canvasWidth, canvasHeight, } = this.state.canvasSize;
         this.canvasHex.width = canvasWidth;
         this.canvasHex.height = canvasHeight;
-        this.drawHex(this.canvasHex, { x: 50, y: 50 });
+        // Method to draw one hexagone at the intials coordinates
+        // this.drawHex(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
+        // Method to draw a column of hexagone (WIP)
+        //this.drawGridColumn(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
+        this.drawGridOddColumn(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
+        this.drawGridEvenColumn(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
+
     }
 
+    //Method to draw ood columns
+    drawGridOddColumn(canvasID, center) {
+        for (let i = 0; i <= this.state.nbColumn; i++) {
+            this.drawGridColumn(
+                this.canvasHex, {
+
+                x: this.state.firstHexCenter.x + i * 3 * this.state.hexSize,
+                y: this.state.firstHexCenter.y
+            });
+        }
+    }
+
+    //Method to draw even columns
+    drawGridEvenColum(ncanvasID, center) {
+        for (let i = 0; i <= this.state.nbColumn; i++) {
+            this.drawGridColumn(
+                this.canvasHex, {
+
+                x: this.state.firstHexCenter.x + i * 3 * this.state.hexSize + 1.5 * this.state.hexSize,
+                y: this.state.firstHexCenter.y + sin(60 * PI / 180) * this.state.hexSize
+            });
+        }
+    }
+    /*
+        //Method to draw grid (WIP)
+        drawGrid(canvasID, center) {
+            for (let i = 0, i<= )
+        }
+    */
+
+    //Method to draw a column
+    drawGridColumn(canvasID, center) {
+        for (let i = 0; i <= this.state.nbHexInLine; i++) {
+            this.drawHex(
+                this.canvasHex,
+                {
+                    x: center.x,
+                    y: i * 2 * sin(60 * PI / 180) * this.state.hexSize + center.y
+                });
+        }
+    }
+
+    //Method to draw the Hexagone, call 5 times the drawLine methode
     drawHex(canvasID, center) {
         for (let i = 0; i <= 5; i++) {
             let start = this.getHexCornerCoord(center, i);
@@ -35,6 +88,7 @@ export default class Canvas extends React.Component {
         }
     }
 
+    //Method to calculate the coordinate of  a sommit from the center
     getHexCornerCoord(center, i) {
 
         let angle_deg = 60 * i;
@@ -44,10 +98,12 @@ export default class Canvas extends React.Component {
         return this.Point(x, y);
     }
 
+    //Generate coordinate in a variable so other methods can use it (?)
     Point(x, y) {
         return { x: x, y: y };
     }
 
+    //Method to draw between two point (start{x,y} and end{x,y})
     drawLine(canvasID, start, end) {
         const ctx = canvasID.getContext("2d");
         ctx.beginPath();
