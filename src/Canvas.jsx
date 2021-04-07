@@ -10,8 +10,8 @@ export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hexSize: 30,
-            firstHexCenter: { x: 50, y: 50 },
+            hexSize: 20,
+            firstHexCenter: { x: 150, y: 150 },
             nbHexInGrid: 50,
             nbHexInColumn: 8,
             nbColumn: 8
@@ -29,11 +29,12 @@ export default class Canvas extends React.Component {
         this.canvasHex.width = canvasWidth;
         this.canvasHex.height = canvasHeight;
         // Method to draw one hexagone at the intials coordinates
-        // this.drawHex(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
+        //this.drawHex2(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
         // Method to draw a column of hexagone (WIP)
         //this.drawGridColumn(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
-        this.drawGridOddColumn(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
-        this.drawGridEvenColumn(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
+
+        this.drawGridOddColumn2(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
+        this.drawGridEvenColumn2(this.canvasHex, { x: this.state.firstHexCenter.x, y: this.state.firstHexCenter.y });
 
     }
 
@@ -49,10 +50,32 @@ export default class Canvas extends React.Component {
         }
     }
 
+    drawGridOddColumn2(canvasID, center) {
+        for (let i = 0; i <= this.state.nbColumn / 2; i++) {
+            this.drawGridColumn2(
+                this.canvasHex, {
+
+                x: this.state.firstHexCenter.x + i * 3 * this.state.hexSize,
+                y: this.state.firstHexCenter.y
+            });
+        }
+    }
+
     //Method to draw even columns
     drawGridEvenColumn(ncanvasID, center) {
         for (let i = 0; i <= this.state.nbColumn / 2 - 1; i++) {
             this.drawGridColumn(
+                this.canvasHex, {
+
+                x: this.state.firstHexCenter.x + i * 3 * this.state.hexSize + 1.5 * this.state.hexSize,
+                y: this.state.firstHexCenter.y + sin(60 * PI / 180) * this.state.hexSize
+            });
+        }
+    }
+
+    drawGridEvenColumn2(ncanvasID, center) {
+        for (let i = 0; i <= this.state.nbColumn / 2 - 1; i++) {
+            this.drawGridColumn2(
                 this.canvasHex, {
 
                 x: this.state.firstHexCenter.x + i * 3 * this.state.hexSize + 1.5 * this.state.hexSize,
@@ -79,6 +102,17 @@ export default class Canvas extends React.Component {
         }
     }
 
+    drawGridColumn2(canvasID, center) {
+        for (let i = 0; i <= this.state.nbHexInColumn; i++) {
+            this.drawHex2(
+                this.canvasHex,
+                {
+                    x: center.x,
+                    y: i * 2 * sin(60 * PI / 180) * this.state.hexSize + center.y
+                });
+        }
+    }
+
     //Method to draw the Hexagone, call 5 times the drawLine methode
     drawHex(canvasID, center) {
         for (let i = 0; i <= 5; i++) {
@@ -88,23 +122,45 @@ export default class Canvas extends React.Component {
         }
     }
 
-    //New Method to draw the hexagone (WIP)
+    //New Method to draw the hexagone (WIP) -> as to be tested
     drawHex2(canvasID, center) {
 
+        let coordHexSummitTt = this.getAllSumitCoordOfOneHex(center);
+        const ctx = canvasID.getContext("2d");
+        ctx.beginPath();
+        for (let i = 0; i <= 6; i++) {
+            //let point = this.Point(coordHexSummitTt[i][0], coordHexSummitTt[i][1]);
+            //ctx.moveTo(coordHexSummitTt[i][0], coordHexSummitTt[i][1]);
+            //ctx.lineTo(coordHexSummitTt[i + 1][0], coordHexSummitTt[i][1]);
+            ctx.lineTo(coordHexSummitTt[i][0], coordHexSummitTt[i][1]);
+
+        }
+        ctx.stroke();
+        ctx.fillStyle = this.getRandomColor();
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
 
-    //New Method to calculate all hex point coordonate and draw (WIP)
-    getAllCoordOfOneHex(center) {
-        let coordHexSummitx = [];
-        let coordHexSummity = [];
+    //New Method to calculate all hex point coordonate and draw (WIP) -> as to be tested
+    getAllSumitCoordOfOneHex(center) {
 
-        for (let i = 0; i <= 5; i++) {
-            coordHexSummitx[i] = this.getHexCornerCoord(center, i).x;
-            coordHexSummity[i] = this.getHexCornerCoord(center, i).y;
+        let coordHexSummitTt = [];
+
+        for (let i = 0; i <= 6; i++) {
+            coordHexSummitTt[i] = [this.getHexCornerCoord(center, i).x, this.getHexCornerCoord(center, i).y];
         };
         //this.drawLine(canvasID, { x: start.x, y: start.y }, { x: end.x, y: end.y });
-        return this.Point(coordHexSummitx, coordHexSummity);
+        return coordHexSummitTt;
     }
 
     //Method to calculate the coordinate of  a sommit from the center
@@ -131,20 +187,6 @@ export default class Canvas extends React.Component {
         ctx.stroke();
         ctx.closePath();
     }
-
-    //New Method to draw between two point (start{x,y} and end{x,y}) (WIP)
-    drawLine2(canvasID, point) {
-        const ctx = canvasID.getContext("2d");
-        ctx.beginPath();
-        for (let i = 0; i <= 5; i++) {
-            ctx.moveTo(point.x[i], point.y[i]);
-            ctx.lineTo(point.x[i], point.y[i]);
-        }
-        ctx.stroke();
-        ctx.closePath();
-    }
-
-    //New Method to draw the hexagone (WIP)
 
     render() {
         return (
