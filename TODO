@@ -1,9 +1,13 @@
 Apprendre à utiliser Canvas
-    Dessiner qqchose
-    Dessiner qqchose ou je veux
-    dessiner qqchose ou je veux de la taille que je veux
-    Dessiner plusieurs choses
+   OK  Dessiner qqchose 
+   OK  Dessiner qqchose ou je veux
+   OK dessiner qqchose ou je veux de la taille que je veux
+   OK Dessiner plusieurs choses
 
-Apprendre à calculer des hexagones
-Enjoy
-Dominer le monde
+OK Apprendre à calculer des hexagones
+OK Dessiner un hexagone
+
+Dessiner une grille d'hexagone
+   OK Dessiner les colonnes paires
+   OK Dessiner les colonnes impaires (décalé)
+    Dessiner la grille complète en une fois
