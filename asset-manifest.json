@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/JeuxHexagone/static/css/main.d0fa43c8.chunk.css",
-    "main.js": "/JeuxHexagone/static/js/main.341d09e6.chunk.js",
-    "main.js.map": "/JeuxHexagone/static/js/main.341d09e6.chunk.js.map",
-    "runtime-main.js": "/JeuxHexagone/static/js/runtime-main.d2ffedf5.js",
-    "runtime-main.js.map": "/JeuxHexagone/static/js/runtime-main.d2ffedf5.js.map",
-    "static/js/2.6095cfbe.chunk.js": "/JeuxHexagone/static/js/2.6095cfbe.chunk.js",
-    "static/js/2.6095cfbe.chunk.js.map": "/JeuxHexagone/static/js/2.6095cfbe.chunk.js.map",
-    "static/js/3.e359225f.chunk.js": "/JeuxHexagone/static/js/3.e359225f.chunk.js",
-    "static/js/3.e359225f.chunk.js.map": "/JeuxHexagone/static/js/3.e359225f.chunk.js.map",
+    "main.js": "/JeuxHexagone/static/js/main.907917f2.chunk.js",
+    "main.js.map": "/JeuxHexagone/static/js/main.907917f2.chunk.js.map",
+    "runtime-main.js": "/JeuxHexagone/static/js/runtime-main.d445f8cc.js",
+    "runtime-main.js.map": "/JeuxHexagone/static/js/runtime-main.d445f8cc.js.map",
+    "static/js/2.947261ff.chunk.js": "/JeuxHexagone/static/js/2.947261ff.chunk.js",
+    "static/js/2.947261ff.chunk.js.map": "/JeuxHexagone/static/js/2.947261ff.chunk.js.map",
+    "static/js/3.9a6051e8.chunk.js": "/JeuxHexagone/static/js/3.9a6051e8.chunk.js",
+    "static/js/3.9a6051e8.chunk.js.map": "/JeuxHexagone/static/js/3.9a6051e8.chunk.js.map",
     "index.html": "/JeuxHexagone/index.html",
     "static/css/main.d0fa43c8.chunk.css.map": "/JeuxHexagone/static/css/main.d0fa43c8.chunk.css.map",
-    "static/js/2.6095cfbe.chunk.js.LICENSE.txt": "/JeuxHexagone/static/js/2.6095cfbe.chunk.js.LICENSE.txt"
+    "static/js/2.947261ff.chunk.js.LICENSE.txt": "/JeuxHexagone/static/js/2.947261ff.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d2ffedf5.js",
-    "static/js/2.6095cfbe.chunk.js",
+    "static/js/runtime-main.d445f8cc.js",
+    "static/js/2.947261ff.chunk.js",
     "static/css/main.d0fa43c8.chunk.css",
-    "static/js/main.341d09e6.chunk.js"
+    "static/js/main.907917f2.chunk.js"
   ]
 }
