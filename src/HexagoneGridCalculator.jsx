@@ -21,7 +21,7 @@ let gridObject = {
     hexagones: [[], []],
     numberHexagoneInColumn: numberHexagoneInColumn,
     numberHexagoneInRow: numberHexagoneInRow,
-    numberHexagoneInGrid: 0,
+    numberHexagoneInGrid: this.numberHexagoneInColumn * this.numberHexagoneInRow
 }
 
 
@@ -29,7 +29,7 @@ let gridObject = {
 function getOneHexagoneAllSummitCoordinate(hexagone) {
 
     for (let i = 0; i <= 6; i++) {
-        let angle = (PI / 180) * 60 * i;
+        let angle = (PI / 180) * -60 * i;
         hexagone.coordSommit.x[i] = hexagone.coordCenter.x + hexagone.size * cos(angle);
         hexagone.coordSommit.y[i] = hexagone.coordCenter.y + hexagone.size * sin(angle);
     }

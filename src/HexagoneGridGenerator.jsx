@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getRandomColor } from "./library";
 import "./canvas.css";
-import { generateEntireGrid } from "./HexagoneCalculator";
+import { generateEntireGrid } from "./HexagoneGridCalculator";
 
 
 function Canvas() {
@@ -39,7 +39,7 @@ function Canvas() {
                 ctx.beginPath();
                 for (let z = 0; z <= 6; z++) {
 
-                    ctx.lineTo(grid.hexagone[i][j].coordSommit.x[z], grid.hexagone[i][j].coordSommit.x[z]);
+                    ctx.lineTo(grid.hexagones[i][j].coordSommit.x[z], grid.hexagones[i][j].coordSommit.y[z]);
 
                 }
 
@@ -60,3 +60,10 @@ function Canvas() {
 
 }
 export default Canvas;
+
+//A creuser pour afficher les hexagones
+//<svg height="210" width="500">
+//  <polygon points="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1" />
+//</svg>
+//
+//https://www.w3schools.com/graphics/svg_polygon.asp
