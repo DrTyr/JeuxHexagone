@@ -47,7 +47,8 @@ export default class Canvas extends React.Component {
   drawGridOddColumn(canvasID, center) {
     for (let i = 0; i <= this.state.nbColumn / 2; i++) {
       this.drawGridColumn(this.canvasHex, {
-        x: this.state.firstHexCenter.x + i * 3 * this.state.hexSize,
+        x: this.state.firstHexCenter.x +
+          i * 3 * this.state.hexSize,
         y: this.state.firstHexCenter.y,
       });
     }

@@ -108,7 +108,7 @@ function Canvas() {
     return coordHexSummitTt;
   }
 
-  //Method to calculate the coordinate of  a sommit from the center
+  //Method to calculate the coordinate of a sommit from the center
   function getHexCornerCoord(center, i) {
     let angle_deg = 60 * i;
     let angle_rad = (PI / 180) * angle_deg;
@@ -144,3 +144,32 @@ function Canvas() {
 }
 
 export default Canvas;
+
+function getOneHexagoneSummitCoordinate(hexagoneObject, hexagoneSize) {
+  for (let i = 0; i <= 6; i++) {
+    let angle = (PI / 180) * 60 * i;
+    hexagoneObject.CoordSommit.x[i] = hexagoneObject.Coordcenter.x + hexagoneSize * cos(angle);
+    hexagoneObject.CoordSommit.y[i] = hexagoneObject.Coordcenter.y + hexagoneSize * sin(angle);
+  }
+  return;
+}
+
+
+let hexagoneObject = {
+  indice: 0,
+  indiceInGrid: { x: 0, y: 0 },
+  coordSommit: { x: [], y: [] },
+  coordCenter: { x: 0, y: 0 },
+  size: 0,
+};
+
+function generateEntireGrid(firstHexagoneCenter, hexagoneSize) {
+
+  for (let i = 0; i <= numberHexagoneInRow; i++) {
+    for (let j = 0; j <= numberHexagoneInColumn; j++) {
+      Hexagone.CoordCenter.x = center.x + j * 3 * hexagoneSize,
+        Hexagone.CoordCenter.y = j * 2 * sin((60 * PI) / 180) * hexagoneSize + center.y
+    }
+  }
+
+}

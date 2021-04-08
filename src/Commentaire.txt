@@ -1,2 +1,4 @@
 
 https://stackoverflow.com/questions/4875673/ondraw-fill-shape-create-with-canvas-drawline
+
+https://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-handler-to-a-canvas-element
