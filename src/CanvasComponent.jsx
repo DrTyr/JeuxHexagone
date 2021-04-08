@@ -163,12 +163,14 @@ let hexagoneObject = {
   size: 0,
 };
 
+
+//Function the generate the Grid as object GridObject of object HexagoneObject
 function generateEntireGrid(firstHexagoneCenter, hexagoneSize) {
 
   for (let i = 0; i <= numberHexagoneInRow; i++) {
     for (let j = 0; j <= numberHexagoneInColumn; j++) {
-      Hexagone.CoordCenter.x = center.x + j * 3 * hexagoneSize,
-        Hexagone.CoordCenter.y = j * 2 * sin((60 * PI) / 180) * hexagoneSize + center.y
+      hexagoneObject.CoordCenter.x = center.x + j * 3 * hexagoneSize,
+        hexagoneObject.CoordCenter.y = j * 2 * sin((60 * PI) / 180) * hexagoneSize + center.y
     }
   }
 
