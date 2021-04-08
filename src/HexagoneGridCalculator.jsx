@@ -10,7 +10,7 @@ const numberHexagoneInRow = 10;
 
 let hexagoneObject = {
     indice: 0,
-    indiceInGrid: { x: 0, y: 0 },
+    coordInGrid: { x: 0, y: 0 },
     coordSommit: { x: [], y: [] },
     coordCenter: { x: 0, y: 0 },
     size: hexagoneSize,
@@ -18,7 +18,7 @@ let hexagoneObject = {
 
 let gridObject = {
     firstHexagoneCenter: { x: 150, y: 150 },
-    hexagone: [[], []],
+    hexagones: [[], []],
     numberHexagoneInColumn: numberHexagoneInColumn,
     numberHexagoneInRow: numberHexagoneInRow,
     numberHexagoneInGrid: 0,
@@ -30,8 +30,8 @@ function getOneHexagoneAllSummitCoordinate(hexagone) {
 
     for (let i = 0; i <= 6; i++) {
         let angle = (PI / 180) * 60 * i;
-        hexagone.coordSommit.x[i] = hexagone.coordcenter.x + hexagone.size * cos(angle);
-        hexagone.coordSommit.y[i] = hexagone.coordcenter.y + hexagone.size * sin(angle);
+        hexagone.coordSommit.x[i] = hexagone.coordCenter.x + hexagone.size * cos(angle);
+        hexagone.coordSommit.y[i] = hexagone.coordCenter.y + hexagone.size * sin(angle);
     }
     return hexagone.coordSommit;
 }
@@ -65,13 +65,13 @@ export function generateEntireGrid() {
             hexagone.coordSommit = getOneHexagoneAllSummitCoordinate(hexagone);
 
             //How to change both value at once ?
-            hexagone.indiceInGrid.x = i;
-            hexagone.indiceInGrid.y = j;
+            hexagone.coordInGrid.x = i;
+            hexagone.coordInGrid.y = j;
 
-            hexagone.indice = i + j;
+            hexagone.indice++;
 
-            grid.hexagone[i][j] = hexagone;
             grid.numberHexagoneInGrid++;
+            grid.hexagones[i][j] = hexagone;
 
         }
     }
