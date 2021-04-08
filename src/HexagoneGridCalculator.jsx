@@ -21,7 +21,7 @@ let gridObject = {
     hexagones: [[], []],
     numberHexagoneInColumn: numberHexagoneInColumn,
     numberHexagoneInRow: numberHexagoneInRow,
-    numberHexagoneInGrid: this.numberHexagoneInColumn * this.numberHexagoneInRow
+    //numberHexagoneInGrid: this.numberHexagoneInColumn * this.numberHexagoneInRow
 }
 
 
