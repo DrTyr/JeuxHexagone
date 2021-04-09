@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 //import Canvas from "./CanvasComponent2";
 import Canvas from "./HexagonGridGenerator"
+import FunctionClick from "./InteractionWithCanvas";
 
 export function App() {
 
@@ -9,6 +10,7 @@ export function App() {
     <div>
       <Canvas />
     </div>
+
   );
 
 }

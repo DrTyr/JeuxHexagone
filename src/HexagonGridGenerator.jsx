@@ -22,6 +22,7 @@ function Canvas() {
     function draw() {
         clearCanvas();
         drawGrid();
+        ;
     }
 
     function drawGrid() {
@@ -34,7 +35,7 @@ function Canvas() {
         for (let i = 0; i < grid.numberRow; i++) {
 
             for (let j = 0; j < grid.numberColumn; j++) {
-
+                // debugger;
                 ctx.beginPath();
                 for (let z = 0; z <= 6; z++) {
                     ctx.lineTo(
@@ -55,7 +56,7 @@ function Canvas() {
     return (
         <div>
             {" "}
-            <canvas
+            <canvas id="map"
                 ref={hexagonCanvas}
                 width={canvasWidth}
                 height={canvasHeight}
