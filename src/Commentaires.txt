@@ -22,5 +22,5 @@ Mes hypothèse :
     - j'ai mal compris comment mettre un objet dans un objet
     - j'ai mal compris comment mettre un objet dans un array à 2 dimensions (je penche pour celle là)
 
-   N'ayant pas pu débuger cette feuille je ne sais pas encore si mes fonctions de dessins fonctionnent (suspens)
+N'ayant pas pu débuger cette feuille je ne sais pas encore si mes fonctions de dessins fonctionnent (suspens)
 
