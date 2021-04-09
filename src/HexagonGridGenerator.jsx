@@ -31,11 +31,9 @@ function Canvas() {
 
         //console.log(grid);
 
-        for (let i = 0; i <= grid.numberRow; i++) {
+        for (let i = 0; i < grid.numberRow; i++) {
 
-            grid.hexagons[i] = [];
-
-            for (let j = 0; j <= grid.numberColumn; j++) {
+            for (let j = 0; j < grid.numberColumn; j++) {
 
                 ctx.beginPath();
                 for (let z = 0; z <= 6; z++) {

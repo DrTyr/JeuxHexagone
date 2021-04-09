@@ -4,8 +4,8 @@ const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
 const hexagonSize = 20;
-const numberhexagonInColumn = 10;
-const numberhexagonInRow = 10;
+const numberhexagonInColumn = 5;
+const numberhexagonInRow = 5;
 
 //Generate all summit coordonate, clockwise, starting with the East one
 function getOnehexagonAllSummitCoordinate(hexagon) {
