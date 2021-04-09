@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 //import Canvas from "./CanvasComponent2";
-import Canvas from "./HexagoneGridGenerator"
+import Canvas from "./HexagonGridGenerator"
 
 export function App() {
 

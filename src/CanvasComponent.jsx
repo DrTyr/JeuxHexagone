@@ -62,7 +62,8 @@ function Canvas() {
   function drawGridEvenColumn() {
     for (let i = 0; i <= columnNumber / 2 - 1; i++) {
       drawGridColumn({
-        x: firstHexagoneCenter.x + i * 3 * hexagoneSize + 1.5 * hexagoneSize,
+        x: firstHexagoneCenter.x +
+          i * 3 * hexagoneSize + 1.5 * hexagoneSize,
         y: firstHexagoneCenter.y + sin((60 * PI) / 180) * hexagoneSize,
       });
     }

@@ -1,26 +1,10 @@
-//import React, { useState, useEffect, useRef } from "react";
 
-const PI = Math.PI;
-const cos = Math.cos;
-const sin = Math.sin;
-const hexagoneSize = 20;
-const numberHexagoneInColumn = 10;
-const numberHexagoneInRow = 10;
 
-//Generate all summit coordonate, clockwise, starting with the East one
-function getOneHexagoneAllSummitCoordinate(hexagone) {
-    for (let i = 0; i <= 6; i++) {
-        let angle = (PI / 180) * -60 * i;
-        hexagone.coordSommit.x[i] =
-            hexagone.coordCenter.x + hexagone.size * cos(angle);
-        hexagone.coordSommit.y[i] =
-            hexagone.coordCenter.y + hexagone.size * sin(angle);
-    }
-    return hexagone.coordSommit;
-}
+
 
 //Function the generate the Grid as object gridObject of object hexagoneObject
-export function generateEntireGrid() {
+export function generateEntireGrid2() {
+
     let grid = {
         firstHexagoneCenter: { x: 150, y: 150 },
         hexagones: [],
@@ -29,31 +13,65 @@ export function generateEntireGrid() {
         //numberHexagoneInGrid: this.numberHexagoneInColumn * this.numberHexagoneInRow
     };
 
+    let hexagone = {
+        indice: 0,
+        coordInGrid: { x: 0, y: 0 },
+        coordSommit: { x: [], y: [] },
+        coordCenter: { x: 0, y: 0 },
+        size: hexagoneSize,
+        color: "",
+    };
+
+    //Generate first event hexagone
+
+    hexagone.coordCenter = grid.firstHexagoneCenter;
+    hexagone.coordSommit = getOneHexagoneAllSummitCoordinate(hexagone);
+    hexagone.indice = 0;
+    grid.Hexagone[0][0] = hexagone;
+
+    //Generate first odd hexagone
+
+    hexagone.coordCenter.x = grid.firstHexagoneCenter.x + 1.5 * hexagone.size;
+    hexagone.coordCenter.y = grid.firstHexagoneCenter.y + sin((60 * PI) / 180) * hexagone.size;
+    hexagone.coordSommit = getOneHexagoneAllSummitCoordinate(hexagone);
+    grid.Hexagone[1][0] = hexagone;
+
+    //Generate the rest of the grid
+
     let hexagoneIndice = 0;
 
     for (let i = 0; i <= grid.numberHexagoneInRow; i++) {
-        grid.hexagones[i] = [];
+        // grid.hexagones[i] = [];
 
         for (let j = 0; j <= grid.numberHexagoneInColumn; j++) {
+
             let hexagone = {
                 indice: 0,
                 coordInGrid: { x: 0, y: 0 },
                 coordSommit: { x: [], y: [] },
                 coordCenter: { x: 0, y: 0 },
                 size: hexagoneSize,
+                color: "",
             };
 
+            //Comment sauter le premier tour de boucle ?
+            if (i === 0 & j === 0) {
+                continue;
+            }
+            else if (i === 1 & j === 0) {
+                continue;
+            }
             //Testing if drawing odd or even column i
-            if (i % 2 === 0) {
+            else if (i % 2 === 0) {
                 hexagone.coordCenter.x =
-                    grid.firstHexagoneCenter.x +
-                    i * 3 * hexagoneSize +
-                    1.5 * hexagoneSize;
-                hexagone.coordCenter.y =
-                    grid.firstHexagoneCenter.y + sin((60 * PI) / 180) * hexagoneSize;
+                    grid.hexagones[i][j].coordCenter.x +
+                    i * 3 * hexagone.size,
+                    hexagone.coordCenter.y =
+                    grid.hexagones[i][j].coordCenter.y +
+                    2 * sin((60 * PI) / 180) * hexagone.size;
             } else {
                 hexagone.coordCenter.x =
-                    grid.firstHexagoneCenter.x +
+                    grid.hexagones[i][j].coordCenter.x +
                     i * 3 * hexagoneSize;
                 hexagone.coordCenter.y = grid.firstHexagoneCenter.y;
             }
