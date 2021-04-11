@@ -4,15 +4,41 @@ import { getRandomColor } from "./library";
 const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
+const hexagonSizes = 20;
+
+export function generateOneHexagone(definedSize, defineColor) {
+
+    if (typeof (definedSize) == 'undefined') {
+        definedSize = hexagonSizes;
+    }
+
+    if (typeof (defineColor) == 'undefined') {
+        defineColor = getRandomColor();
+    }
+
+    let hexagon = {
+        indice: 0,
+        coordInGrid: { x: 0, y: 0 },
+        coordSommit: { x: [], y: [] },
+        coordCenter: { x: 0, y: 0 },
+        size: definedSize,
+        color: defineColor,
+    };
+
+    return hexagon;
+
+}
 
 //Generate all summit coordonate, clockwise, starting with the East one
-function getOnehexagonAllSummitCoordinate(hexagon) {
+export function getOnehexagonAllSummitCoordinate(hexagon) {
     for (let i = 0; i <= 6; i++) {
         let angle = (PI / 180) * 60 * i;
         hexagon.coordSommit.x[i] =
-            hexagon.coordCenter.x + hexagon.size * cos(angle);
+            hexagon.coordCenter.x +
+            hexagon.size * cos(angle);
         hexagon.coordSommit.y[i] =
-            hexagon.coordCenter.y + hexagon.size * sin(angle);
+            hexagon.coordCenter.y +
+            hexagon.size * sin(angle);
     }
     return hexagon.coordSommit;
 }
@@ -88,7 +114,7 @@ export function generateEntireGrid() {
         hexagons: [],
         numberColumn: 10,
         numberRow: 10,
-        hexagonSize: 20
+        hexagonSize: hexagonSizes,
         //numberhexagonInGrid: this.numberhexagonInColumn * this.numberhexagonInRow
     };
 
