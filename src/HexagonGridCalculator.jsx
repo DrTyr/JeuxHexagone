@@ -1,4 +1,5 @@
 //import React, { useState, useEffect, useRef } from "react";
+import { getRandomColor } from "./library";
 
 const PI = Math.PI;
 const cos = Math.cos;
@@ -60,6 +61,8 @@ function generateAllTheHexagones(grid) {
 
             hexagon.indice = hexagonIndice++;
 
+            hexagon.color = getRandomColor();
+
             grid.numberhexagonInGrid++;
             grid.hexagons[i][j] = hexagon;
         }
@@ -81,7 +84,7 @@ function generatePath(grid) {
 export function generateEntireGrid() {
 
     let grid = {
-        firsthexagonCenter: { x: 50, y: 50 },
+        firsthexagonCenter: { x: 150, y: 150 },
         hexagons: [],
         numberColumn: 10,
         numberRow: 10,
