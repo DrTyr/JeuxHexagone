@@ -4,23 +4,3 @@ https://stackoverflow.com/questions/4875673/ondraw-fill-shape-create-with-canvas
 https://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-handler-to-a-canvas-element
 
 
-Pour Amaury :
-
-J'ai séparé la partie calcul sur HexagoneGridCalculator et la partie dessin sur HexagoneGridGenerator
-
-Erreur :
-
-Fichier HexagoneGridCalculator.jsx
-Cannot set property '0' of undefined
-line 74
-grid.hexagones[i][j] = hexagone; 
-
-De ce que j'en comprend il ne sais pas ce qu'est grid.hexagones[i][j] mais i et j sont (normalement) ok et j'ai bien généré l'objet grid.
-Ce que je ne comprend pas c'est qu'il a l'air d'être OK avec l'objet hexagone et je génère les 2 de la mêmes façon.
-Mes hypothèse : 
-    - j'ai mal compris comment gérer un array à 2 dimensions
-    - j'ai mal compris comment mettre un objet dans un objet
-    - j'ai mal compris comment mettre un objet dans un array à 2 dimensions (je penche pour celle là)
-
-N'ayant pas pu débuger cette feuille je ne sais pas encore si mes fonctions de dessins fonctionnent (suspens)
-

@@ -13,32 +13,25 @@ export function App() {
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
   // let hexagonColor = grid.hexagons[0][0].color;
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    console.log("REDRAW YOUHOU")
 
-  }, [grid]);
+
+  // }, [grid]);
 
   function prepareHexagonesForSVG() {
 
 
     //return grid.hexagons.map((hexagons, i) => hexagons.map((hexagon, j) => {
-    return grid.hexagons.map((hexagons) => hexagons.map((hexagon) => {
+    return grid.hexagons.map((hexagons) => hexagons.map((hexagon) =>
 
-      let hexagonCoordForSvg = getHexagonCoordPointInString(hexagon);
-
-      //let hexagonColor = grid.hexagons[i][j].color;
-      let hexagonColor = hexagon.color;
-
-      let hexagoneindiceForBalise = `indice${hexagon.indice}`
-
-      return <polygon onClick={() => {
+      <polygon onClick={() => {
         let grid2 = { ...grid };
         grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y].color = getRandomColor();
         setGrid(grid2);
-      }} key={hexagoneindiceForBalise} points={hexagonCoordForSvg} fill={hexagonColor} />
+      }} key={`indice${hexagon.indice}`} points={getHexagonCoordPointInString(hexagon)} fill={hexagon.color} />
 
-    }))
+    ))
 
   }
 
