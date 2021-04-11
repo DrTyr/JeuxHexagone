@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/JeuxHexagone/static/css/main.1635e87c.chunk.css",
-    "main.js": "/JeuxHexagone/static/js/main.d81bc18d.chunk.js",
-    "main.js.map": "/JeuxHexagone/static/js/main.d81bc18d.chunk.js.map",
+    "main.js": "/JeuxHexagone/static/js/main.df8011bc.chunk.js",
+    "main.js.map": "/JeuxHexagone/static/js/main.df8011bc.chunk.js.map",
     "runtime-main.js": "/JeuxHexagone/static/js/runtime-main.d445f8cc.js",
     "runtime-main.js.map": "/JeuxHexagone/static/js/runtime-main.d445f8cc.js.map",
     "static/js/2.a0bb2c0d.chunk.js": "/JeuxHexagone/static/js/2.a0bb2c0d.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.d445f8cc.js",
     "static/js/2.a0bb2c0d.chunk.js",
     "static/css/main.1635e87c.chunk.css",
-    "static/js/main.d81bc18d.chunk.js"
+    "static/js/main.df8011bc.chunk.js"
   ]
 }
