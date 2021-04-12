@@ -1,10 +1,10 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Fragment } from "react";
+import React, { useState, Fragment } from "react";
 //import Canvas from "./CanvasGridGenerator";
 import { getHexagonCoordPointInString } from "./SvgGridGenerator";
 import { generateEntireGrid, getOnehexagonAllSummitCoordinate, generateOneHexagone } from "./HexagonGridCalculator";
-import { getRandomColor, inverseBoolean } from "./library";
+import { getRandomColor } from "./library";
+//import {} from "./InteractionsWithHexagons"
 
 export function App() {
 
@@ -21,28 +21,49 @@ export function App() {
 
   // }, [grid, currentHexagon]);
 
+  function hexagonFillTest(hexagon) {
+
+    let blue = "#0000ff";
+    let red = "#ff0000";
+
+    if (hexagon.fill === "") { return hexagon.color }
+    else { return red }
+
+  }
+
 
   function DisplayGridWithSvg() {
 
 
     //return grid.hexagons.map((hexagons, i) => hexagons.map((hexagon, j) => {
     return grid.hexagons.map((hexagons) => hexagons.map((hexagon) =>
+      <Fragment>
 
-      <polygon onClick={() => {
-        //need to declare a new grid to refresh memory
-        let grid2 = { ...grid };
-        grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y].color = getRandomColor();
-        setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
-        setGrid(grid2);
-        if (HexagonIsClicked === false) {
-          setHexagonIsClicked(true);
-        }
-        else { setHexagonIsClicked(false) }
-      }}
-        key={`indice${hexagon.indice}`}
-        points={getHexagonCoordPointInString(hexagon)}
-        fill={hexagon.color}
-      />
+        <polygon onClick={() => {
+          //need to declare a new grid to refresh memory
+          let grid2 = { ...grid };
+          grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y].color = getRandomColor();
+          //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
+          setGrid(grid2);
+          if (HexagonIsClicked === false) {
+            setHexagonIsClicked(true);
+          }
+          else { setHexagonIsClicked(false) }
+        }}
+          key={`indice${hexagon.indice}`}
+          points={getHexagonCoordPointInString(hexagon)}
+          fill={hexagonFillTest(hexagon)}
+        />
+        <text x={hexagon.coordCenter.x} y={hexagon.coordCenter.y}
+          fontFamily="Verdana"
+          fontSize="10"
+          fill="blue"
+          textAnchor="middle"
+          key={`text${hexagon.indice}`}>
+          {`${hexagon.coordInGrid.x}, ${hexagon.coordInGrid.y}`}
+        </text>
+
+      </Fragment>
 
     ))
 
@@ -53,38 +74,12 @@ export function App() {
 
     if (HexagonIsClicked === true) {
 
-      console.log("grid avant")
-      console.log(grid)
       let hexagonDisplayed = generateOneHexagone();
 
-      console.log("Initialisation");
-      console.log(hexagonDisplayed);
-
       hexagonDisplayed = { ...currentHexagon };
-
-      console.log("Recup current");
-
-      console.log(hexagonDisplayed);
-
       hexagonDisplayed.coordCenter = { x: 250, y: 250 };
-
-
-
-
-
       hexagonDisplayed.size = 100;
       hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
-
-      console.log("changes  ");
-
-      console.log(hexagonDisplayed);
-
-      console.log("grid après ");
-
-      console.log(grid);
-
-
-      //console.log("Test fonction click sur un hexagone");
 
       return (<polygon
         points={getHexagonCoordPointInString(hexagonDisplayed)}
@@ -94,24 +89,6 @@ export function App() {
 
 
   }
-
-  function DisplayClickedHexagonData() {
-
-    let hexagonDisplayed = { ...currentHexagon };
-
-    return (<text x={hexagonDisplayed.x[0]}
-      y={hexagonDisplayed.y[0]}
-      text-anchor="middle"
-      fill="black"
-      font-size="30">
-      TEST
-    </text>)
-
-
-  }
-
-
-
 
 
   return (

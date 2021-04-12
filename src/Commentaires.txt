@@ -4,3 +4,10 @@ https://stackoverflow.com/questions/4875673/ondraw-fill-shape-create-with-canvas
 https://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-handler-to-a-canvas-element
 
 
+TODO : 
+
+En cas de click sur un hexagone, afficher ses propriétés dans le gros hexagone
+Apprendre à fill un hexagone avec une image
+    Actuellement un hexagone random possède une caractérisque fill et apparait en rouge
+        Voir randomlyFillhexagoneWithBanditCampImg dans "./HexagonGridCalculator"
+        et hexagonFillTest dans "./App"

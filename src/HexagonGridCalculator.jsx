@@ -5,6 +5,8 @@ const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
 const hexagonSizes = 20;
+const numberColumn = 5;
+const numberRow = 10;
 
 export function generateOneHexagone() {
 
@@ -60,6 +62,7 @@ function generateAllTheHexagones(grid) {
                 coordCenter: { x: 0, y: 0 },
                 size: grid.hexagonSize,
                 color: "",
+                fill: "",
             };
 
             //Testing if drawing odd or even column i
@@ -98,12 +101,20 @@ function generateAllTheHexagones(grid) {
 
 }
 
-function generatePath(grid) {
+function randomlyFillhexagoneWithBanditCampImg(grid) {
 
+    //Generate a random whole number between 0 and 20
+    //let random = Math.floor(Math.random() * 20);
 
+    let randomColumn = Math.floor(Math.random() * grid.numberColumn);
+    let randomRow = Math.floor(Math.random() * grid.numberRow);
 
+    let newFill = "./public/BanditCamp.jpg";
+
+    grid.hexagons[randomRow][randomColumn].fill = newFill;
 
     return grid;
+
 }
 
 //Function the generate the Grid as object gridObject of object hexagonObject
@@ -112,13 +123,16 @@ export function generateEntireGrid() {
     let grid = {
         firsthexagonCenter: { x: 150, y: 150 },
         hexagons: [],
-        numberColumn: 10,
-        numberRow: 10,
+        numberColumn: numberColumn,
+        numberRow: numberRow,
         hexagonSize: hexagonSizes,
         //numberhexagonInGrid: this.numberhexagonInColumn * this.numberhexagonInRow
     };
 
     grid = generateAllTheHexagones(grid);
+    //grid.hexagons[1][1].fill = "test";
+    grid = randomlyFillhexagoneWithBanditCampImg(grid);
+
 
     return grid;
 
