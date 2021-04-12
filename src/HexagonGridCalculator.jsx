@@ -101,17 +101,15 @@ function generateAllTheHexagones(grid) {
 
 }
 
+//WIP randomly fill on hexagone.fill with adress of IMG (currently not working)
 function randomlyFillhexagoneWithBanditCampImg(grid) {
 
-    //Generate a random whole number between 0 and 20
-    //let random = Math.floor(Math.random() * 20);
+    let coordonate = getCoordonateRandomHexagoneInGrid(grid);
 
-    let randomColumn = Math.floor(Math.random() * grid.numberColumn);
-    let randomRow = Math.floor(Math.random() * grid.numberRow);
-
+    //
     let newFill = "./public/BanditCamp.jpg";
 
-    grid.hexagons[randomRow][randomColumn].fill = newFill;
+    grid.hexagons[coordonate.x][coordonate.y].fill = newFill;
 
     return grid;
 
@@ -135,5 +133,72 @@ export function generateEntireGrid() {
 
 
     return grid;
+
+}
+
+//Get the grid and return the coordonate, on the grid, of a random hexagon
+function getCoordonateRandomHexagoneInGrid(grid) {
+
+    //Generate a random whole number between 0 and grid.numberColumn
+    let randomColumn = Math.floor(Math.random() * grid.numberColumn);
+    let randomRow = Math.floor(Math.random() * grid.numberRow);
+
+    let coordonate = { x: randomRow, y: randomColumn };
+
+    return coordonate;
+
+}
+
+//take the coordinates of one hexagone and return coordinate of the direct neighbours
+function getNeidhbourCoordinateOfOneHexagone(xstart, ystart) {
+
+    //start coordinate (x,y)
+    //neighbour are : (x-1,y) (x-1,y+1) (x,y-1) (x, y+1) (x+1,y) (x+1,y+1)
+
+    let neighbourCoordinate = [{ x: 0, y: 0, pos: "" }];
+
+    neighbourCoordinate[0] = { x: xstart - 1, y: ystart, pos: "northWest" };
+    neighbourCoordinate[1] = { x: xstart - 1, y: ystart + 1, pos: "southWest" };
+    neighbourCoordinate[2] = { x: xstart, y: ystart - 1, pos: "north" };
+    neighbourCoordinate[3] = { x: xstart, y: ystart + 1, pos: "south" };
+    neighbourCoordinate[4] = { x: xstart + 1, y: ystart, pos: "northEast" };
+    neighbourCoordinate[5] = { x: xstart + 1, y: ystart + 1, pos: "southEast" };
+
+    return neighbourCoordinate;
+
+
+}
+
+//(WIP) function to generate the coordondate of a path and affect selected points inside the 
+//hexagon object so it can be get to draw the part of the path that go through a specific hexagon
+function generatePath(grid) {
+
+    //Define the starting hexagone at random
+    let startcoordonate = getCoordonateRandomHexagoneInGrid(grid);
+    //Define coord in grid of it's neighbour
+    let neighbourCoordinate = getNeidhbourCoordinateOfOneHexagone(startcoordonate.x, startcoordonate.y);
+
+    //Test if some neighbours are out of grid
+    for (let i = 0; i < 6; i++) {
+
+        if (test) {
+
+
+        }
+
+
+    }
+
+    //Erase the out of grid neighbour from the liste
+
+    //var list = ["bar", "baz", "foo", "qux"];
+    // list.splice(0, 2); 
+    // Starting at index position 0, remove two elements ["bar", "baz"] and retains ["foo", "qux"].
+
+    //Chose a random neighbour in the remaing ones
+    let randomNeighbourCoordonate = Math.floor(Math.random() * 5);
+    let ChosenNeighbourCoordonate = neighbourCoordinate[randomNeighbourCoordonate];
+
+
 
 }

@@ -26,7 +26,7 @@ export function App() {
     let blue = "#0000ff";
     let red = "#ff0000";
 
-    if (hexagon.fill === "") { return hexagon.color }
+    if (hexagon.fill === "") { return blue }
     else { return red }
 
   }
