@@ -6,23 +6,23 @@ const cos = Math.cos;
 const sin = Math.sin;
 const hexagonSizes = 20;
 
-export function generateOneHexagone(definedSize, defineColor) {
+export function generateOneHexagone() {
 
-    if (typeof (definedSize) == 'undefined') {
-        definedSize = hexagonSizes;
-    }
+    // if (typeof (definedSize) == 'undefined') {
+    //     definedSize = hexagonSizes;
+    // }
 
-    if (typeof (defineColor) == 'undefined') {
-        defineColor = getRandomColor();
-    }
+    // if (typeof (defineColor) == 'undefined') {
+    //     defineColor = getRandomColor();
+    // }
 
     let hexagon = {
         indice: 0,
         coordInGrid: { x: 0, y: 0 },
         coordSommit: { x: [], y: [] },
         coordCenter: { x: 0, y: 0 },
-        size: definedSize,
-        color: defineColor,
+        size: hexagonSizes,
+        color: "white",
     };
 
     return hexagon;

@@ -6,3 +6,14 @@ export function getRandomColor() {
   }
   return color;
 }
+
+export function inverseBoolean(boolean) {
+
+  if (boolean === true) {
+    return (false)
+  }
+  else {
+    return (true)
+  }
+
+}
