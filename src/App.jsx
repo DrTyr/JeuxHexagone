@@ -10,7 +10,7 @@ export function App() {
 
   const [grid, setGrid] = useState(generateEntireGrid());
   const [currentHexagon, setCurrentHexagon] = useState(generateOneHexagone());
-  const [HexagonIsClicked, setHexagonIsClicked] = useState(false);
+  const [mousePassedOnHexagon, setmousePassedOnHexagon] = useState(false);
   // let grid = generateEntireGrid();
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
   // let hexagonColor = grid.hexagons[0][0].color;
@@ -37,6 +37,7 @@ export function App() {
 
     //return grid.hexagons.map((hexagons, i) => hexagons.map((hexagon, j) => {
     return grid.hexagons.map((hexagons) => hexagons.map((hexagon) =>
+
       <Fragment>
 
         <polygon onClick={() => {
@@ -45,22 +46,31 @@ export function App() {
           grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y].color = getRandomColor();
           //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
           setGrid(grid2);
-          if (HexagonIsClicked === false) {
-            setHexagonIsClicked(true);
-          }
-          else { setHexagonIsClicked(false) }
         }}
+          onMouseEnter={() => {
+            let grid2 = { ...grid };
+            //setGrid(grid2)
+            setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
+            DisplayOnMouseHexagon()
+            // if (mousePassedOnHexagon === false) {
+            //   setmousePassedOnHexagon(true);
+            // }
+            // else { setmousePassedOnHexagon(false) }
+          }}
           key={`indice${hexagon.indice}`}
           points={getHexagonCoordPointInString(hexagon)}
           fill={hexagonFillTest(hexagon)}
         />
+
         <text x={hexagon.coordCenter.x} y={hexagon.coordCenter.y}
           fontFamily="Verdana"
           fontSize="10"
-          fill="blue"
+          fill="black"
           textAnchor="middle"
           key={`text${hexagon.indice}`}>
+
           {`${hexagon.coordInGrid.x}, ${hexagon.coordInGrid.y}`}
+
         </text>
 
       </Fragment>
@@ -70,22 +80,21 @@ export function App() {
   }
 
 
-  function DisplayClickedHexagon() {
+  function DisplayOnMouseHexagon() {
 
-    if (HexagonIsClicked === true) {
+    //if (mousePassedOnHexagon === true) {
+    let hexagonDisplayed = generateOneHexagone();
 
-      let hexagonDisplayed = generateOneHexagone();
+    hexagonDisplayed = currentHexagon;
+    hexagonDisplayed.coordCenter = { x: 250, y: 250 };
+    hexagonDisplayed.size = 100;
+    hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
 
-      hexagonDisplayed = { ...currentHexagon };
-      hexagonDisplayed.coordCenter = { x: 250, y: 250 };
-      hexagonDisplayed.size = 100;
-      hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
-
-      return (<polygon
-        points={getHexagonCoordPointInString(hexagonDisplayed)}
-        fill={hexagonDisplayed.color}
-        stroke="black" />)
-    }
+    return (<polygon
+      points={getHexagonCoordPointInString(hexagonDisplayed)}
+      fill={hexagonDisplayed.color}
+      stroke="black" />)
+    //}
 
 
   }
@@ -99,7 +108,7 @@ export function App() {
       </svg>
 
       <svg width="500" height="500">
-        {DisplayClickedHexagon()}
+        {DisplayOnMouseHexagon()}
       </svg>
 
       {/* <Canvas /> */}

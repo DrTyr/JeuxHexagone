@@ -24,7 +24,7 @@ export function generateOneHexagone() {
         coordSommit: { x: [], y: [] },
         coordCenter: { x: 0, y: 0 },
         size: hexagonSizes,
-        color: "white",
+        color: "black",
     };
 
     return hexagon;
