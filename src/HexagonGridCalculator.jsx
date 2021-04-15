@@ -4,9 +4,12 @@ import { getRandomColor } from "./library";
 const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
-const hexagonSizes = 20;
+const hexagonSizes = 30;
 const numberColumn = 5;
 const numberRow = 10;
+const xFirstHesagonCenter = 50;
+const yFirstHesagonCenter = 50;
+
 
 export function generateOneHexagone() {
 
@@ -104,10 +107,11 @@ function generateAllTheHexagones(grid) {
 //WIP randomly fill on hexagone.fill with adress of IMG (currently not working)
 function randomlyFillhexagoneWithBanditCampImg(grid) {
 
+    //return objet coordinate with x and y of a random hexagon
     let coordonate = getCoordonateRandomHexagoneInGrid(grid);
 
     //
-    let newFill = "./public/BanditCamp.jpg";
+    let newFill = "BanditCamp.jpg";
 
     grid.hexagons[coordonate.x][coordonate.y].fill = newFill;
 
@@ -119,7 +123,7 @@ function randomlyFillhexagoneWithBanditCampImg(grid) {
 export function generateEntireGrid() {
 
     let grid = {
-        firsthexagonCenter: { x: 150, y: 150 },
+        firsthexagonCenter: { x: xFirstHesagonCenter, y: yFirstHesagonCenter },
         hexagons: [],
         numberColumn: numberColumn,
         numberRow: numberRow,
@@ -150,10 +154,11 @@ function getCoordonateRandomHexagoneInGrid(grid) {
 }
 
 //take the coordinates of one hexagone and return coordinate of the direct neighbours
-function getNeidhbourCoordinateOfOneHexagone(xstart, ystart) {
+function getNeidhbourCoordinateOfOneHexagone(xstart, ystart, nbRowInGrid, nbColumnInGrid) {
 
     //start coordinate (x,y)
     //neighbour are : (x-1,y) (x-1,y+1) (x,y-1) (x, y+1) (x+1,y) (x+1,y+1)
+    // x : row, y : column
 
     let neighbourCoordinate = [{ x: 0, y: 0, pos: "" }];
 
@@ -164,6 +169,27 @@ function getNeidhbourCoordinateOfOneHexagone(xstart, ystart) {
     neighbourCoordinate[4] = { x: xstart + 1, y: ystart, pos: "northEast" };
     neighbourCoordinate[5] = { x: xstart + 1, y: ystart + 1, pos: "southEast" };
 
+    //Test if some neighbours are outside the grid and remove them
+    for (let i = 0; i < 6; i++) {
+
+        if (neighbourCoordinate[i].x < 0) {
+            neighbourCoordinate.splice(i, 1);
+        }
+        else if (neighbourCoordinate[i].x > nbRowInGrid) {
+            neighbourCoordinate.splice(i, 1);
+        }
+        else if (neighbourCoordinate[i].y < 0) {
+            neighbourCoordinate.splice(i, 1);
+        }
+        else if (neighbourCoordinate[i].y > nbColumnInGrid) {
+            neighbourCoordinate.splice(i, 1);
+        }
+    }
+
+    //var list = ["bar", "baz", "foo", "qux"];
+    // list.splice(0, 2); 
+    // Starting at index position 0, remove two elements ["bar", "baz"] and retains ["foo", "qux"].
+
     return neighbourCoordinate;
 
 
@@ -171,34 +197,20 @@ function getNeidhbourCoordinateOfOneHexagone(xstart, ystart) {
 
 //(WIP) function to generate the coordondate of a path and affect selected points inside the 
 //hexagon object so it can be get to draw the part of the path that go through a specific hexagon
-function generatePath(grid) {
+function generatePath(grid, lengthPath) {
 
     //Define the starting hexagone at random
-    let startcoordonate = getCoordonateRandomHexagoneInGrid(grid);
-    //Define coord in grid of it's neighbour
-    let neighbourCoordinate = getNeidhbourCoordinateOfOneHexagone(startcoordonate.x, startcoordonate.y);
+    let startcoordinate = getCoordonateRandomHexagoneInGrid(grid);
 
-    //Test if some neighbours are out of grid
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i <= startcoordinate; i++) {
 
-        if (test) {
-
-
-        }
-
+        //Define coord in grid of it's neighbour
+        let neighbourCoordinate = getNeidhbourCoordinateOfOneHexagone(startcoordinate.x, startcoordinate.y);
+        //Chose a random neighbour in the remaing ones
+        let randomNeighbourCoordonate = Math.floor(Math.random() * neighbourCoordinate.length);
+        let chosenNeighbourCoordonate = neighbourCoordinate[randomNeighbourCoordonate];
 
     }
-
-    //Erase the out of grid neighbour from the liste
-
-    //var list = ["bar", "baz", "foo", "qux"];
-    // list.splice(0, 2); 
-    // Starting at index position 0, remove two elements ["bar", "baz"] and retains ["foo", "qux"].
-
-    //Chose a random neighbour in the remaing ones
-    let randomNeighbourCoordonate = Math.floor(Math.random() * 5);
-    let ChosenNeighbourCoordonate = neighbourCoordinate[randomNeighbourCoordonate];
-
 
 
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 //import Canvas from "./CanvasGridGenerator";
 import { getHexagonCoordPointInString } from "./SvgGridGenerator";
 import { generateEntireGrid, getOnehexagonAllSummitCoordinate, generateOneHexagone } from "./HexagonGridCalculator";
@@ -17,17 +17,18 @@ export function App() {
 
   // useEffect(() => {
 
-  //   DisplayClickedHexagon();
+  //   DisplayOnMouseHexagon();
+  //   DisplayGridWithSvg();
 
-  // }, [grid, currentHexagon]);
+  // }, [grid, currentHexagon, mousePassedOnHexagon]);
 
   function hexagonFillTest(hexagon) {
 
-    let blue = "#0000ff";
+    let blue = "#00BFFF";
     let red = "#ff0000";
 
     if (hexagon.fill === "") { return blue }
-    else { return red }
+    else { return "url(#img1)" }
 
   }
 
@@ -51,27 +52,35 @@ export function App() {
             let grid2 = { ...grid };
             //setGrid(grid2)
             setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
+            setmousePassedOnHexagon(true);
             DisplayOnMouseHexagon()
-            // if (mousePassedOnHexagon === false) {
-            //   setmousePassedOnHexagon(true);
-            // }
-            // else { setmousePassedOnHexagon(false) }
           }}
           key={`indice${hexagon.indice}`}
           points={getHexagonCoordPointInString(hexagon)}
           fill={hexagonFillTest(hexagon)}
+        //fill="#img1"
         />
 
         <text x={hexagon.coordCenter.x} y={hexagon.coordCenter.y}
           fontFamily="Verdana"
           fontSize="10"
-          fill="black"
+          fill="white"
           textAnchor="middle"
           key={`text${hexagon.indice}`}>
 
           {`${hexagon.coordInGrid.x}, ${hexagon.coordInGrid.y}`}
 
         </text>
+
+        <defs>
+          <pattern id="img1" patternUnits="userSpaceOnUse" width="60" height="60">
+            <image xlinkHref="BanditCamp.jpg" x="0" y="0" width="60" height="60" />
+          </pattern>
+        </defs>
+
+        <defs>
+          <image id="img2" xlinkHref="BanditCamp.jpg" x="0" y="0" width="60" height="60" />
+        </defs>
 
       </Fragment>
 
@@ -82,19 +91,21 @@ export function App() {
 
   function DisplayOnMouseHexagon() {
 
-    //if (mousePassedOnHexagon === true) {
-    let hexagonDisplayed = generateOneHexagone();
+    if (mousePassedOnHexagon === true) {
+      let hexagonDisplayed = generateOneHexagone();
 
-    hexagonDisplayed = currentHexagon;
-    hexagonDisplayed.coordCenter = { x: 250, y: 250 };
-    hexagonDisplayed.size = 100;
-    hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
+      hexagonDisplayed = currentHexagon;
+      hexagonDisplayed.coordCenter = { x: 250, y: 250 };
+      hexagonDisplayed.size = 100;
+      hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
 
-    return (<polygon
-      points={getHexagonCoordPointInString(hexagonDisplayed)}
-      fill={hexagonDisplayed.color}
-      stroke="black" />)
-    //}
+      // setmousePassedOnHexagon(false);
+
+      return (<polygon
+        points={getHexagonCoordPointInString(hexagonDisplayed)}
+        fill={hexagonDisplayed.color}
+        stroke="black" />)
+    }
 
 
   }
