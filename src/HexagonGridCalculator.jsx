@@ -4,9 +4,9 @@ import { getRandomColor } from "./library";
 const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
-const hexagonSizes = 30;
-const numberColumn = 5;
-const numberRow = 10;
+const hexagonSizes = 40;
+const numberColumn = 8;
+const numberRow = 5;
 const xFirstHesagonCenter = 50;
 const yFirstHesagonCenter = 50;
 
@@ -111,9 +111,8 @@ function randomlyFillhexagoneWithBanditCampImg(grid) {
     let coordonate = getCoordonateRandomHexagoneInGrid(grid);
 
     //
-    let newFill = "BanditCamp.jpg";
 
-    grid.hexagons[coordonate.x][coordonate.y].fill = newFill;
+    grid.hexagons[coordonate.x][coordonate.y].fill = "url(#banditCamp)";
 
     return grid;
 

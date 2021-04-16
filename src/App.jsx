@@ -5,6 +5,9 @@ import { getHexagonCoordPointInString } from "./SvgGridGenerator";
 import { generateEntireGrid, getOnehexagonAllSummitCoordinate, generateOneHexagone } from "./HexagonGridCalculator";
 import { getRandomColor } from "./library";
 //import {} from "./InteractionsWithHexagons"
+import banditCamp from './BanditCamp.jpg';
+import grass from "./Grass.png";
+
 
 export function App() {
 
@@ -22,13 +25,19 @@ export function App() {
 
   // }, [grid, currentHexagon, mousePassedOnHexagon]);
 
+  //Test if hexagon as a .fill paramater, of not return blue as default fill color
   function hexagonFillTest(hexagon) {
 
     let blue = "#00BFFF";
     let red = "#ff0000";
 
     if (hexagon.fill === "") { return blue }
-    else { return "url(#img1)" }
+    else {
+      return `${hexagon.fill}`
+    }
+
+    // "url(#img1)"
+
 
   }
 
@@ -73,14 +82,11 @@ export function App() {
         </text>
 
         <defs>
-          <pattern id="img1" patternUnits="userSpaceOnUse" width="60" height="60">
-            <image xlinkHref="BanditCamp.jpg" x="0" y="0" width="60" height="60" />
+          <pattern id="banditCamp" patternUnits="objectBoundingBox" x="0" y="0" width={hexagon.size} height={hexagon.size}>
+            <image href={banditCamp} x="0" y="0" width={hexagon.size * 4} height={hexagon.size * 2} />
           </pattern>
         </defs>
 
-        <defs>
-          <image id="img2" xlinkHref="BanditCamp.jpg" x="0" y="0" width="60" height="60" />
-        </defs>
 
       </Fragment>
 
@@ -95,7 +101,7 @@ export function App() {
       let hexagonDisplayed = generateOneHexagone();
 
       hexagonDisplayed = currentHexagon;
-      hexagonDisplayed.coordCenter = { x: 250, y: 250 };
+      hexagonDisplayed.coordCenter = { x: 100, y: 100 };
       hexagonDisplayed.size = 100;
       hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
 
@@ -114,11 +120,12 @@ export function App() {
   return (
 
     <Fragment>
-      <svg width="500" height="500">
+
+      <svg width={grid.hexagonSize * 2 * grid.numberRow} height={grid.hexagonSize * 2 * grid.numberColumn}>
         {DisplayGridWithSvg()}
       </svg>
 
-      <svg width="500" height="500">
+      <svg width="500" height="200">
         {DisplayOnMouseHexagon()}
       </svg>
 
