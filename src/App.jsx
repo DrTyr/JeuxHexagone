@@ -45,25 +45,26 @@ export function App() {
     //return grid.hexagons.map((hexagons, i) => hexagons.map((hexagon, j) => {
     return grid.hexagons.map(hexagons =>
       hexagons.map(hexagon => (
-        <Fragment>
+        <g
+          onClick={() => {
+            //need to declare a new grid to refresh memory
+            let grid2 = { ...grid };
+            hexagon.color = getRandomColor();
+            //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
+            setGrid(grid2);
+          }}
+          onMouseEnter={() => {
+            //let grid2 = { ...grid };
+            //setGrid(grid2)
+            setCurrentHexagon(hexagon);
+            //setmousePassedOnHexagon(true);
+            //displayOnMouseHexagon()
+          }}
+          onMouseLeave={() => {
+            setCurrentHexagon(null);
+          }}
+        >
           <polygon
-            onClick={() => {
-              //need to declare a new grid to refresh memory
-              let grid2 = { ...grid };
-              hexagon.color = getRandomColor();
-              //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
-              setGrid(grid2);
-            }}
-            onMouseEnter={() => {
-              //let grid2 = { ...grid };
-              //setGrid(grid2)
-              setCurrentHexagon(hexagon);
-              //setmousePassedOnHexagon(true);
-              //displayOnMouseHexagon()
-            }}
-            onMouseLeave={() => {
-              setCurrentHexagon(null);
-            }}
             key={`indice${hexagon.indice}`}
             points={getHexagonCoordPointInString(hexagon)}
             fill={hexagonFillTest(hexagon)}
@@ -116,7 +117,7 @@ export function App() {
               />
             </pattern>
           </defs>
-        </Fragment>
+        </g>
       )),
     );
   }
