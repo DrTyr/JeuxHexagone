@@ -16,6 +16,7 @@ import grass from "./Grass.png";
 export function App() {
   const [grid, setGrid] = useState(generateEntireGrid());
   const [currentHexagon, setCurrentHexagon] = useState();
+  const [previousgrid, setPreviousGrid] = useState(grid);
   // let grid = generateEntireGrid();
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
   // let hexagonColor = grid.hexagons[0][0].color;
@@ -42,24 +43,37 @@ export function App() {
   }
 
   function DisplayGridWithSvg() {
+    var downTimer = 0;
+
     //return grid.hexagons.map((hexagons, i) => hexagons.map((hexagon, j) => {
     return grid.hexagons.map(hexagons =>
       hexagons.map(hexagon => (
         <g
           key={`indice${hexagon.indice}`}
           onMouseDown={() => {
+            clearTimeout(downTimer);
             let grid2 = { ...grid };
             //Trigger function onLongClick after a 1000ms long click
-            setTimeout(function () {
+            // setTimeout(function () {
+            //   setGrid(onLongClick(hexagon, grid2));
+            // }, 2000);
+            downTimer = setTimeout(function () {
+              setPreviousGrid(_.cloneDeep(grid));
               setGrid(onLongClick(hexagon, grid2));
-            }, 2000);
+            }, 1000);
+          }}
+          onMouseUp={() => {
+            clearTimeout(downTimer);
+            setGrid(previousgrid);
           }}
           onClick={() => {
-            //need to declare a new grid to refresh memory
-            let grid2 = { ...grid };
-            hexagon.color = getRandomColor();
-            //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
-            setGrid(grid2);
+            if (downTimer < 1000) {
+              //need to declare a new grid to refresh memory
+              let grid2 = { ...grid };
+              hexagon.color = getRandomColor();
+              //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
+              setGrid(grid2);
+            }
           }}
           onMouseEnter={() => {
             //let grid2 = { ...grid };

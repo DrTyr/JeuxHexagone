@@ -168,14 +168,17 @@ export function getNeighbourCoordinateOfOneHexagone(
 
   //Test if some neighbours are outside the grid and remove them
 
-  neighbourCoordinate.slice(0).forEach(function (item) {
+  neighbourCoordinate.slice(0).forEach(function (coordNeighbours) {
     if (
-      item.x < 0 ||
-      item.x > nbRowInGrid - 1 ||
-      item.y < 0 ||
-      item.y > nbColumnInGrid - 1
+      coordNeighbours.x < 0 ||
+      coordNeighbours.x > nbRowInGrid - 1 ||
+      coordNeighbours.y < 0 ||
+      coordNeighbours.y > nbColumnInGrid - 1
     ) {
-      neighbourCoordinate.splice(neighbourCoordinate.indexOf(item), 1);
+      neighbourCoordinate.splice(
+        neighbourCoordinate.indexOf(coordNeighbours),
+        1,
+      );
     }
   });
 
