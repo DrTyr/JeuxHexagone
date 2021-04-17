@@ -29,7 +29,7 @@ export function App() {
   function hexagonFillTest(hexagon) {
 
     let blue = "#00BFFF";
-    let red = "#ff0000";
+    //let red = "#ff0000";
 
     if (hexagon.fill === "") { return blue }
     else {
@@ -85,6 +85,9 @@ export function App() {
           <pattern id="banditCamp" patternUnits="objectBoundingBox" x="0" y="0" width={hexagon.size} height={hexagon.size}>
             <image href={banditCamp} x="0" y="0" width={hexagon.size * 4} height={hexagon.size * 2} />
           </pattern>
+          <pattern id="grass" patternUnits="objectBoundingBox" x="0" y="0" width={hexagon.size} height={hexagon.size}>
+            <image href={grass} x="0" y="0" width={hexagon.size * 4} height={hexagon.size * 2} />
+          </pattern>
         </defs>
 
 
@@ -121,13 +124,24 @@ export function App() {
 
     <Fragment>
 
-      <svg width={grid.hexagonSize * 2 * grid.numberRow} height={grid.hexagonSize * 2 * grid.numberColumn}>
-        {DisplayGridWithSvg()}
-      </svg>
+      <div class="mapsgrid">
+        <svg width={grid.hexagonSize * 2 * grid.numberColumn} height={grid.hexagonSize * 2 * grid.numberRow}>
+          {DisplayGridWithSvg()}
+        </svg>
+      </div>
 
-      <svg width="500" height="200">
-        {DisplayOnMouseHexagon()}
-      </svg>
+      <div class="rightblocs">
+
+        <div class="hexagonDisplayed">
+          <svg width="500" height="200">
+            {DisplayOnMouseHexagon()}
+          </svg>
+        </div>
+
+        <div class="Encounter"> BOUP BIP BIP BOUP </div>
+
+      </div>
+
 
       {/* <Canvas /> */}
 

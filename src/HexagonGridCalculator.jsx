@@ -6,7 +6,7 @@ const cos = Math.cos;
 const sin = Math.sin;
 const hexagonSizes = 40;
 const numberColumn = 8;
-const numberRow = 5;
+const numberRow = 8;
 const xFirstHesagonCenter = 50;
 const yFirstHesagonCenter = 50;
 
@@ -109,10 +109,12 @@ function randomlyFillhexagoneWithBanditCampImg(grid) {
 
     //return objet coordinate with x and y of a random hexagon
     let coordonate = getCoordonateRandomHexagoneInGrid(grid);
-
+    let coordonate2 = getCoordonateRandomHexagoneInGrid(grid);
     //
 
     grid.hexagons[coordonate.x][coordonate.y].fill = "url(#banditCamp)";
+    grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#grass)";
+
 
     return grid;
 
@@ -201,13 +203,12 @@ function generatePath(grid, lengthPath) {
     //Define the starting hexagone at random
     let startcoordinate = getCoordonateRandomHexagoneInGrid(grid);
 
-    for (let i = 0; i <= startcoordinate; i++) {
+    for (let i = 0; i <= lengthPath; i++) {
 
         //Define coord in grid of it's neighbour
         let neighbourCoordinate = getNeidhbourCoordinateOfOneHexagone(startcoordinate.x, startcoordinate.y);
         //Chose a random neighbour in the remaing ones
-        let randomNeighbourCoordonate = Math.floor(Math.random() * neighbourCoordinate.length);
-        let chosenNeighbourCoordonate = neighbourCoordinate[randomNeighbourCoordonate];
+        let chosenNeighbourCoordonate = neighbourCoordinate[Math.floor(Math.random() * neighbourCoordinate.length)];
 
     }
 

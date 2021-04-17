@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.mapsgrid {
+  float: left;
+}
+
+/* .hexagonDisplayed {
+  display: flex;
+}
+
+.Encounter { 
+  display: flex;
+
+} */
+
+.rightblocs{
+  float: right;
+
+}
