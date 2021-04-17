@@ -9,7 +9,7 @@ import {
   generateOneHexagone,
 } from "./HexagonGridCalculator";
 import { getRandomColor } from "./library";
-//import {} from "./InteractionsWithHexagons"
+import { onLongClick } from "./InteractionsWithHexagons";
 import banditCamp from "./BanditCamp.jpg";
 import grass from "./Grass.png";
 
@@ -46,6 +46,14 @@ export function App() {
     return grid.hexagons.map(hexagons =>
       hexagons.map(hexagon => (
         <g
+          key={`indice${hexagon.indice}`}
+          onMouseDown={() => {
+            let grid2 = { ...grid };
+            //Trigger function onLongClick after a 1000ms long click
+            setTimeout(function () {
+              setGrid(onLongClick(hexagon, grid2));
+            }, 2000);
+          }}
           onClick={() => {
             //need to declare a new grid to refresh memory
             let grid2 = { ...grid };
@@ -65,7 +73,6 @@ export function App() {
           }}
         >
           <polygon
-            key={`indice${hexagon.indice}`}
             points={getHexagonCoordPointInString(hexagon)}
             fill={hexagonFillTest(hexagon)}
             //fill="#img1"
@@ -78,7 +85,7 @@ export function App() {
             fontSize="10"
             fill="white"
             textAnchor="middle"
-            key={`text${hexagon.indice}`}
+            //key={`text${hexagon.indice}`}
           >
             {`${hexagon.coordInGrid.x}, ${hexagon.coordInGrid.y}`}
           </text>

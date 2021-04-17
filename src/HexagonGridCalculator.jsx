@@ -137,41 +137,47 @@ function getCoordonateRandomHexagoneInGrid(grid) {
 }
 
 //take the coordinates of one hexagone and return coordinate of the direct neighbours
-function getNeidhbourCoordinateOfOneHexagone(
+export function getNeighbourCoordinateOfOneHexagone(
   xstart,
   ystart,
   nbRowInGrid,
   nbColumnInGrid,
 ) {
-  //start coordinate (x,y)
+  //start coordinate (x,y) x and y are the coordinate of the hexagon inside the grid
   //neighbour are : (x-1,y) (x-1,y+1) (x,y-1) (x, y+1) (x+1,y) (x+1,y+1)
   // x : row, y : column
 
   let neighbourCoordinate = [{ x: 0, y: 0, pos: "" }];
 
-  neighbourCoordinate[0] = { x: xstart - 1, y: ystart, pos: "northWest" };
-  neighbourCoordinate[1] = { x: xstart - 1, y: ystart + 1, pos: "southWest" };
-  neighbourCoordinate[2] = { x: xstart, y: ystart - 1, pos: "north" };
-  neighbourCoordinate[3] = { x: xstart, y: ystart + 1, pos: "south" };
-  neighbourCoordinate[4] = { x: xstart + 1, y: ystart, pos: "northEast" };
-  neighbourCoordinate[5] = { x: xstart + 1, y: ystart + 1, pos: "southEast" };
-
-  //Test if some neighbours are outside the grid and remove them
-  for (let i = 0; i < 6; i++) {
-    if (neighbourCoordinate[i].x < 0) {
-      neighbourCoordinate.splice(i, 1);
-    } else if (neighbourCoordinate[i].x > nbRowInGrid) {
-      neighbourCoordinate.splice(i, 1);
-    } else if (neighbourCoordinate[i].y < 0) {
-      neighbourCoordinate.splice(i, 1);
-    } else if (neighbourCoordinate[i].y > nbColumnInGrid) {
-      neighbourCoordinate.splice(i, 1);
-    }
+  //Generate list of coord in grid of all the neighbours, different for odd and even column
+  if (xstart % 2 === 0) {
+    neighbourCoordinate[0] = { x: xstart - 1, y: ystart - 1, pos: "northWest" };
+    neighbourCoordinate[1] = { x: xstart - 1, y: ystart, pos: "southWest" };
+    neighbourCoordinate[2] = { x: xstart, y: ystart - 1, pos: "north" };
+    neighbourCoordinate[3] = { x: xstart, y: ystart + 1, pos: "south" };
+    neighbourCoordinate[4] = { x: xstart + 1, y: ystart - 1, pos: "northEast" };
+    neighbourCoordinate[5] = { x: xstart + 1, y: ystart, pos: "southEast" };
+  } else {
+    neighbourCoordinate[0] = { x: xstart - 1, y: ystart, pos: "northWest" };
+    neighbourCoordinate[1] = { x: xstart - 1, y: ystart + 1, pos: "southWest" };
+    neighbourCoordinate[2] = { x: xstart, y: ystart - 1, pos: "north" };
+    neighbourCoordinate[3] = { x: xstart, y: ystart + 1, pos: "south" };
+    neighbourCoordinate[4] = { x: xstart + 1, y: ystart, pos: "northEast" };
+    neighbourCoordinate[5] = { x: xstart + 1, y: ystart + 1, pos: "southEast" };
   }
 
-  //var list = ["bar", "baz", "foo", "qux"];
-  // list.splice(0, 2);
-  // Starting at index position 0, remove two elements ["bar", "baz"] and retains ["foo", "qux"].
+  //Test if some neighbours are outside the grid and remove them
+
+  neighbourCoordinate.slice(0).forEach(function (item) {
+    if (
+      item.x < 0 ||
+      item.x > nbRowInGrid - 1 ||
+      item.y < 0 ||
+      item.y > nbColumnInGrid - 1
+    ) {
+      neighbourCoordinate.splice(neighbourCoordinate.indexOf(item), 1);
+    }
+  });
 
   return neighbourCoordinate;
 }
@@ -184,7 +190,7 @@ function generatePath(grid, lengthPath) {
 
   for (let i = 0; i <= lengthPath; i++) {
     //Define coord in grid of it's neighbour
-    let neighbourCoordinate = getNeidhbourCoordinateOfOneHexagone(
+    let neighbourCoordinate = getNeighbourCoordinateOfOneHexagone(
       startcoordinate.x,
       startcoordinate.y,
     );
