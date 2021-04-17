@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/JeuxHexagone/static/css/main.1635e87c.chunk.css",
-    "main.js": "/JeuxHexagone/static/js/main.df8011bc.chunk.js",
-    "main.js.map": "/JeuxHexagone/static/js/main.df8011bc.chunk.js.map",
-    "runtime-main.js": "/JeuxHexagone/static/js/runtime-main.d445f8cc.js",
-    "runtime-main.js.map": "/JeuxHexagone/static/js/runtime-main.d445f8cc.js.map",
-    "static/js/2.a0bb2c0d.chunk.js": "/JeuxHexagone/static/js/2.a0bb2c0d.chunk.js",
-    "static/js/2.a0bb2c0d.chunk.js.map": "/JeuxHexagone/static/js/2.a0bb2c0d.chunk.js.map",
-    "static/js/3.9a6051e8.chunk.js": "/JeuxHexagone/static/js/3.9a6051e8.chunk.js",
-    "static/js/3.9a6051e8.chunk.js.map": "/JeuxHexagone/static/js/3.9a6051e8.chunk.js.map",
+    "main.css": "/JeuxHexagone/static/css/main.84b8d007.chunk.css",
+    "main.js": "/JeuxHexagone/static/js/main.39ff268c.chunk.js",
+    "main.js.map": "/JeuxHexagone/static/js/main.39ff268c.chunk.js.map",
+    "runtime-main.js": "/JeuxHexagone/static/js/runtime-main.d2ffedf5.js",
+    "runtime-main.js.map": "/JeuxHexagone/static/js/runtime-main.d2ffedf5.js.map",
+    "static/js/2.4adf8b20.chunk.js": "/JeuxHexagone/static/js/2.4adf8b20.chunk.js",
+    "static/js/2.4adf8b20.chunk.js.map": "/JeuxHexagone/static/js/2.4adf8b20.chunk.js.map",
+    "static/js/3.e359225f.chunk.js": "/JeuxHexagone/static/js/3.e359225f.chunk.js",
+    "static/js/3.e359225f.chunk.js.map": "/JeuxHexagone/static/js/3.e359225f.chunk.js.map",
     "index.html": "/JeuxHexagone/index.html",
-    "static/css/main.1635e87c.chunk.css.map": "/JeuxHexagone/static/css/main.1635e87c.chunk.css.map",
-    "static/js/2.a0bb2c0d.chunk.js.LICENSE.txt": "/JeuxHexagone/static/js/2.a0bb2c0d.chunk.js.LICENSE.txt"
+    "static/css/main.84b8d007.chunk.css.map": "/JeuxHexagone/static/css/main.84b8d007.chunk.css.map",
+    "static/js/2.4adf8b20.chunk.js.LICENSE.txt": "/JeuxHexagone/static/js/2.4adf8b20.chunk.js.LICENSE.txt",
+    "static/media/BanditCamp.111e7e62.jpg": "/JeuxHexagone/static/media/BanditCamp.111e7e62.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d445f8cc.js",
-    "static/js/2.a0bb2c0d.chunk.js",
-    "static/css/main.1635e87c.chunk.css",
-    "static/js/main.df8011bc.chunk.js"
+    "static/js/runtime-main.d2ffedf5.js",
+    "static/js/2.4adf8b20.chunk.js",
+    "static/css/main.84b8d007.chunk.css",
+    "static/js/main.39ff268c.chunk.js"
   ]
 }
