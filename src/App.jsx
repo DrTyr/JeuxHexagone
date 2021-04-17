@@ -12,7 +12,7 @@ import grass from "./Grass.png";
 export function App() {
 
   const [grid, setGrid] = useState(generateEntireGrid());
-  const [currentHexagon, setCurrentHexagon] = useState(generateOneHexagone());
+  const [currentHexagon, setCurrentHexagon] = useState();
   const [mousePassedOnHexagon, setmousePassedOnHexagon] = useState(false);
   // let grid = generateEntireGrid();
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
@@ -58,11 +58,16 @@ export function App() {
           setGrid(grid2);
         }}
           onMouseEnter={() => {
-            let grid2 = { ...grid };
+            //let grid2 = { ...grid };
             //setGrid(grid2)
-            setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
-            setmousePassedOnHexagon(true);
-            DisplayOnMouseHexagon()
+            let hexagonOnMouse = generateOneHexagone();
+            hexagonOnMouse = hexagon;
+            setCurrentHexagon(hexagonOnMouse);
+            //setmousePassedOnHexagon(true);
+            //displayOnMouseHexagon()
+          }}
+          onMouseLeave={() => {
+            setCurrentHexagon(null);
           }}
           key={`indice${hexagon.indice}`}
           points={getHexagonCoordPointInString(hexagon)}
@@ -98,54 +103,80 @@ export function App() {
   }
 
 
-  function DisplayOnMouseHexagon() {
+  function displayCurrentHexagon() {
 
-    if (mousePassedOnHexagon === true) {
-      let hexagonDisplayed = generateOneHexagone();
+    //Get out of the function if currentHexagon don't exist
+    if (!currentHexagon) { return }
 
-      hexagonDisplayed = currentHexagon;
-      hexagonDisplayed.coordCenter = { x: 100, y: 100 };
-      hexagonDisplayed.size = 100;
-      hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
+    let hexagonDisplayed = { ...currentHexagon, coordCenter: { x: 100, y: 100 }, size: 100 };
+    // hexagonDisplayed.coordCenter = { x: 100, y: 100 };
+    // hexagonDisplayed.size = 100;
+    hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(hexagonDisplayed);
 
-      // setmousePassedOnHexagon(false);
+    // setmousePassedOnHexagon(false);
 
-      return (<polygon
-        points={getHexagonCoordPointInString(hexagonDisplayed)}
-        fill={hexagonDisplayed.color}
-        stroke="black" />)
-    }
-
+    return (<polygon
+      points={getHexagonCoordPointInString(hexagonDisplayed)}
+      fill={hexagonDisplayed.color}
+      stroke="black" />)
 
   }
 
 
   return (
 
-    <Fragment>
+    // <Fragment>
 
-      <div class="mapsgrid">
+    //   <div class="mapsgrid">
+    //     <svg width={grid.hexagonSize * 2 * grid.numberColumn} height={grid.hexagonSize * 2 * grid.numberRow}>
+    //       {DisplayGridWithSvg()}
+    //     </svg>
+    //   </div>
+
+    //   <div class="rightblocs">
+
+    //     <div class="hexagonDisplayed">
+    //       <svg width="500" height="200">
+    //         {DisplayOnMouseHexagon()}
+    //       </svg>
+    //     </div>
+
+    //     <div class="Encounter"> BOUP BIP BIP BOUP </div>
+
+    //   </div>
+
+
+    //   {/* <Canvas /> */}
+
+    // </Fragment>
+
+    <div className="bigDivOfTheDeath">
+
+      <div className="left">
+
         <svg width={grid.hexagonSize * 2 * grid.numberColumn} height={grid.hexagonSize * 2 * grid.numberRow}>
           {DisplayGridWithSvg()}
         </svg>
+
       </div>
 
-      <div class="rightblocs">
+      <div className="right">
 
-        <div class="hexagonDisplayed">
+        <div className="upRight">
           <svg width="500" height="200">
-            {DisplayOnMouseHexagon()}
+            {displayCurrentHexagon()}
           </svg>
+
+        </div>
+        <div className="downRight">
+          BIP BOUP BOUP BIP
         </div>
 
-        <div class="Encounter"> BOUP BIP BIP BOUP </div>
-
       </div>
 
 
-      {/* <Canvas /> */}
+    </div>
 
-    </Fragment>
 
   );
 
