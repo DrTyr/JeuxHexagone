@@ -206,6 +206,31 @@ export function App() {
         >
           {DisplayGridWithSvg()}
         </svg>
+
+        {/* <svg width="400" height="400">
+          <defs>
+            <pattern
+              id="imgpattern"
+              x="0"
+              y="0"
+              width="1"
+              height="1"
+              viewBox="0 0 1024 576"
+              preserveAspectRatio="xMidYMid slice"
+            >
+              <image
+                width="1024"
+                height="576"
+                xlinkHref="https://www.lovemysalad.com/sites/default/files/styles/home_carousel_item_768/public/banaan-large.jpg?itok=qRLZa1EH"
+              />
+            </pattern>
+          </defs>
+
+          <polygon
+            points="380,205.88457268119896 350,257.8460969082653 290,257.8460969082653 260,205.88457268119896  290,153.92304845413264 349.99999999999994,153.9230484541326"
+            fill="url(#imgpattern)"
+          ></polygon>
+        </svg> */}
       </div>
 
       <div className="subRight-hexagonDisplay-encounter">
