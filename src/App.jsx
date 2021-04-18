@@ -68,22 +68,22 @@ export function App() {
           }}
           onClick={() => {
             if (downTimer < 1000) {
-              //need to declare a new grid to refresh memory
-              let grid2 = { ...grid };
-              hexagon.color = getRandomColor();
-              //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
-              setGrid(grid2);
+              //let grid2 = { ...grid };
+              //setGrid(grid2)
+              setCurrentHexagon(hexagon);
+              //setmousePassedOnHexagon(true);
+              //displayOnMouseHexagon()
             }
           }}
           onMouseEnter={() => {
-            //let grid2 = { ...grid };
-            //setGrid(grid2)
-            setCurrentHexagon(hexagon);
-            //setmousePassedOnHexagon(true);
-            //displayOnMouseHexagon()
+            //need to declare a new grid to refresh memory
+            let grid2 = { ...grid };
+            hexagon.color = getRandomColor();
+            //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
+            setGrid(grid2);
           }}
           onMouseLeave={() => {
-            setCurrentHexagon(null);
+            //setCurrentHexagon(null);
           }}
         >
           <polygon
