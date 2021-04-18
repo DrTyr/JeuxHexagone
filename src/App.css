@@ -56,7 +56,7 @@ body {
   width: 50%;
   height: 100%;
   /* background-color: brown; */
-  margin: 0;
+  margin: 50px;
   display: grid;
   place-items: center;
 }

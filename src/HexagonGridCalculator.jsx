@@ -4,9 +4,15 @@ import { getRandomColor } from "./library";
 const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
-const hexagonSizes = 60;
+//get height and width of the browser
+let windowWidth = window.innerWidth;
+let windowHeight = window.innerHeight;
+// !!!!!! row and column are inverted, to expend the grid width add one more Row
 const numberColumn = 8;
-const numberRow = 8;
+const numberRow = 9;
+//const hexagonSizes = 60;
+//Calculate hexagon size depending on browser window size
+let hexagonSizes = windowWidth / numberColumn / 2 / 2;
 const xFirstHesagonCenter = 50;
 const yFirstHesagonCenter = 50;
 

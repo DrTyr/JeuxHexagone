@@ -29,6 +29,9 @@ export function App() {
   );
   const [isPushedDown, setIsPushedDown] = useState(false);
 
+  let windowWidth = window.innerWidth;
+  let windowHeight = window.innerHeight;
+
   // let grid = generateEntireGrid();
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
   // let hexagonColor = grid.hexagons[0][0].color;
@@ -295,8 +298,8 @@ export function App() {
     <div className="mainDivFullScreen">
       <div className="subLeft-hexagonGrig">
         <svg
-          width={grid.hexagonSize * 2 * grid.numberColumn}
-          height={grid.hexagonSize * 2 * grid.numberRow}
+          width={grid.hexagonSize * 2 * grid.numberRow}
+          height={grid.hexagonSize * 2 * grid.numberColumn}
         >
           {DisplayGridWithSvg()}
           {displayCaracter()}
