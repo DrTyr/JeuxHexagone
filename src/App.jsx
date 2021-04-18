@@ -12,11 +12,13 @@ import { getRandomColor } from "./library";
 import { onLongClick } from "./InteractionsWithHexagons";
 import banditCamp from "./BanditCamp.jpg";
 import grass from "./Grass.png";
+import knight from "./knight.jpg";
 
 export function App() {
   const [grid, setGrid] = useState(generateEntireGrid());
   const [currentHexagon, setCurrentHexagon] = useState();
   const [previousgrid, setPreviousGrid] = useState(grid);
+  const [hexagonKnightOn, setHexagonKnightOn] = useState();
   // let grid = generateEntireGrid();
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
   // let hexagonColor = grid.hexagons[0][0].color;
@@ -73,6 +75,7 @@ export function App() {
               setCurrentHexagon(hexagon);
               //setmousePassedOnHexagon(true);
               //displayOnMouseHexagon()
+              // MoveKnight(hexagon.coordInGrid);
             }
           }}
           onMouseEnter={() => {
@@ -89,6 +92,7 @@ export function App() {
           <polygon
             points={getHexagonCoordPointInString(hexagon)}
             fill={hexagonFillTest(hexagon)}
+            opacity={hexagon.opacity}
             //fill="url(#grass)"
           />
 
@@ -115,7 +119,7 @@ export function App() {
               viewBox="0 0 320 320"
               preserveAspectRatio="xMidYMid slice"
             >
-              <image width="320" height="320" xlinkHref={grass} />
+              <image width="320" height="320" href={grass} />
             </pattern>
             <pattern
               id="banditCamp"
@@ -129,12 +133,21 @@ export function App() {
               preserveAspectRatio="xMidYMid slice"
             >
               <image
-                xlinkHref={banditCamp}
+                href={banditCamp}
                 //size of the img
                 width="700"
                 height="310"
               />
             </pattern>
+            {/* <image
+              id="knighImg"
+              href={knight}
+              //size of the img
+              width="900"
+              height="900"
+              x={hexagon.coordCenter.x}
+              y={hexagon.coordCenter.y}
+            /> */}
           </defs>
         </g>
       )),
@@ -171,31 +184,13 @@ export function App() {
     );
   }
 
+  // function MoveKnight(pos) {
+  //   setHexagonKnightOn(pos);
+
+  //   <img src={knight} alt="knight"></img>;
+  // }
+
   return (
-    // <Fragment>
-
-    //   <div class="mapsgrid">
-    //     <svg width={grid.hexagonSize * 2 * grid.numberColumn} height={grid.hexagonSize * 2 * grid.numberRow}>
-    //       {DisplayGridWithSvg()}
-    //     </svg>
-    //   </div>
-
-    //   <div class="rightblocs">
-
-    //     <div class="hexagonDisplayed">
-    //       <svg width="500" height="200">
-    //         {DisplayOnMouseHexagon()}
-    //       </svg>
-    //     </div>
-
-    //     <div class="Encounter"> BOUP BIP BIP BOUP </div>
-
-    //   </div>
-
-    //   {/* <Canvas /> */}
-
-    // </Fragment>
-
     <div className="mainDivFullScreen">
       <div className="subLeft-hexagonGrig">
         <svg

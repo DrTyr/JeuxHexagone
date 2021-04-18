@@ -8,14 +8,16 @@ export function onLongClick(hexagon, grid) {
     grid.numberRow,
   );
 
-  // console.log("voisins dans interactions :", neighbourCoordinate);
+  //Set the opacity of every hexagon of the grid to 0.5
+  grid.hexagons.map(hexagons =>
+    hexagons.map(hexagon => (hexagon.opacity = 0.5)),
+  );
 
-  let red = "#ff0000";
-
+  //Set back the opacity of the neighbours to 1
   for (let i = 0; i < neighbourCoordinate.length; i++) {
     grid.hexagons[neighbourCoordinate[i].x][
       neighbourCoordinate[i].y
-    ].color = red;
+    ].opacity = 1;
   }
 
   return grid;

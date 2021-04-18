@@ -58,6 +58,7 @@ function generateAllTheHexagones(grid) {
         size: grid.hexagonSize,
         color: "",
         fill: "",
+        opacity: 1,
       };
 
       //Testing if drawing odd or even column i
