@@ -89,7 +89,7 @@ export function App() {
           <polygon
             points={getHexagonCoordPointInString(hexagon)}
             fill={hexagonFillTest(hexagon)}
-            //fill="#img1"
+            //fill="url(#grass)"
           />
 
           <text
@@ -104,37 +104,35 @@ export function App() {
             {`${hexagon.coordInGrid.x}, ${hexagon.coordInGrid.y}`}
           </text>
 
+          {/* <svg width="400" height="400"> */}
           <defs>
             <pattern
-              id="banditCamp"
-              patternUnits="objectBoundingBox"
+              id="grass"
               x="0"
               y="0"
-              width={hexagon.size}
-              height={hexagon.size}
+              width="1"
+              height="1"
+              viewBox="0 0 320 320"
+              preserveAspectRatio="xMidYMid slice"
             >
-              <image
-                href={banditCamp}
-                x="0"
-                y="0"
-                width={hexagon.size * 4}
-                height={hexagon.size * 2}
-              />
+              <image width="320" height="320" xlinkHref={grass} />
             </pattern>
             <pattern
-              id="grass"
-              patternUnits="objectBoundingBox"
+              id="banditCamp"
+              // patternUnits="objectBoundingBox"
               x="0"
               y="0"
-              width={hexagon.size}
-              height={hexagon.size}
+              width="1"
+              height="1"
+              //view Box 0 0 and size of the img
+              viewBox="0 0 700 310"
+              preserveAspectRatio="xMidYMid slice"
             >
               <image
-                href={grass}
-                x="0"
-                y="0"
-                width={hexagon.size * 4}
-                height={hexagon.size * 2}
+                xlinkHref={banditCamp}
+                //size of the img
+                width="700"
+                height="310"
               />
             </pattern>
           </defs>
@@ -206,31 +204,6 @@ export function App() {
         >
           {DisplayGridWithSvg()}
         </svg>
-
-        {/* <svg width="400" height="400">
-          <defs>
-            <pattern
-              id="imgpattern"
-              x="0"
-              y="0"
-              width="1"
-              height="1"
-              viewBox="0 0 1024 576"
-              preserveAspectRatio="xMidYMid slice"
-            >
-              <image
-                width="1024"
-                height="576"
-                xlinkHref="https://www.lovemysalad.com/sites/default/files/styles/home_carousel_item_768/public/banaan-large.jpg?itok=qRLZa1EH"
-              />
-            </pattern>
-          </defs>
-
-          <polygon
-            points="380,205.88457268119896 350,257.8460969082653 290,257.8460969082653 260,205.88457268119896  290,153.92304845413264 349.99999999999994,153.9230484541326"
-            fill="url(#imgpattern)"
-          ></polygon>
-        </svg> */}
       </div>
 
       <div className="subRight-hexagonDisplay-encounter">
