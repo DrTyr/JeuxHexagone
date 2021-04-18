@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/JeuxHexagone/static/css/main.84b8d007.chunk.css",
-    "main.js": "/JeuxHexagone/static/js/main.39ff268c.chunk.js",
-    "main.js.map": "/JeuxHexagone/static/js/main.39ff268c.chunk.js.map",
+    "main.js": "/JeuxHexagone/static/js/main.1c293892.chunk.js",
+    "main.js.map": "/JeuxHexagone/static/js/main.1c293892.chunk.js.map",
     "runtime-main.js": "/JeuxHexagone/static/js/runtime-main.d2ffedf5.js",
     "runtime-main.js.map": "/JeuxHexagone/static/js/runtime-main.d2ffedf5.js.map",
-    "static/js/2.4adf8b20.chunk.js": "/JeuxHexagone/static/js/2.4adf8b20.chunk.js",
-    "static/js/2.4adf8b20.chunk.js.map": "/JeuxHexagone/static/js/2.4adf8b20.chunk.js.map",
+    "static/js/2.3671865f.chunk.js": "/JeuxHexagone/static/js/2.3671865f.chunk.js",
+    "static/js/2.3671865f.chunk.js.map": "/JeuxHexagone/static/js/2.3671865f.chunk.js.map",
     "static/js/3.e359225f.chunk.js": "/JeuxHexagone/static/js/3.e359225f.chunk.js",
     "static/js/3.e359225f.chunk.js.map": "/JeuxHexagone/static/js/3.e359225f.chunk.js.map",
     "index.html": "/JeuxHexagone/index.html",
     "static/css/main.84b8d007.chunk.css.map": "/JeuxHexagone/static/css/main.84b8d007.chunk.css.map",
-    "static/js/2.4adf8b20.chunk.js.LICENSE.txt": "/JeuxHexagone/static/js/2.4adf8b20.chunk.js.LICENSE.txt",
-    "static/media/BanditCamp.111e7e62.jpg": "/JeuxHexagone/static/media/BanditCamp.111e7e62.jpg"
+    "static/js/2.3671865f.chunk.js.LICENSE.txt": "/JeuxHexagone/static/js/2.3671865f.chunk.js.LICENSE.txt",
+    "static/media/BanditCamp.111e7e62.jpg": "/JeuxHexagone/static/media/BanditCamp.111e7e62.jpg",
+    "static/media/knight.8be56920.jpg": "/JeuxHexagone/static/media/knight.8be56920.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.d2ffedf5.js",
-    "static/js/2.4adf8b20.chunk.js",
+    "static/js/2.3671865f.chunk.js",
     "static/css/main.84b8d007.chunk.css",
-    "static/js/main.39ff268c.chunk.js"
+    "static/js/main.1c293892.chunk.js"
   ]
 }
