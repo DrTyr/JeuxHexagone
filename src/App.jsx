@@ -7,18 +7,28 @@ import {
   generateEntireGrid,
   getOnehexagonAllSummitCoordinate,
   generateOneHexagone,
+  getCoordonateRandomHexagoneInGrid,
 } from "./HexagonGridCalculator";
 import { getRandomColor } from "./library";
 import { onLongClick } from "./InteractionsWithHexagons";
 import banditCamp from "./BanditCamp.jpg";
 import grass from "./Grass.png";
 import knight from "./knight.jpg";
+//import { gridRender } from "./SvgGridDisplay";
 
 export function App() {
   const [grid, setGrid] = useState(generateEntireGrid());
   const [currentHexagon, setCurrentHexagon] = useState();
   const [previousgrid, setPreviousGrid] = useState(grid);
   const [hexagonKnightOn, setHexagonKnightOn] = useState();
+  const [posCaracterInGrid, setPosCaracterInGrid] = useState(
+    grid.hexagons[0][0].coordInGrid,
+  );
+  const [posCaracterInSvg, setPosCaracterInSvg] = useState(
+    grid.hexagons[0][0].coordCenter,
+  );
+  const [isPushedDown, setIsPushedDown] = useState(false);
+
   // let grid = generateEntireGrid();
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
   // let hexagonColor = grid.hexagons[0][0].color;
@@ -52,31 +62,36 @@ export function App() {
       hexagons.map(hexagon => (
         <g
           key={`indice${hexagon.indice}`}
+          onMouseOver={() => {
+            // if (isPushedDown === true) {
+            //setPosCaracterInSvg(hexagon.coordCenter);
+            // }
+          }}
           onMouseDown={() => {
-            clearTimeout(downTimer);
-            let grid2 = { ...grid };
-            //Trigger function onLongClick after a 1000ms long click
-            // setTimeout(function () {
+            // clearTimeout(downTimer);
+            // let grid2 = { ...grid };
+            // //Trigger function onLongClick after a 1000ms long click
+            // // setTimeout(function () {
+            // //   setGrid(onLongClick(hexagon, grid2));
+            // // }, 2000);
+            // downTimer = setTimeout(function () {
+            //   setPreviousGrid(_.cloneDeep(grid));
             //   setGrid(onLongClick(hexagon, grid2));
-            // }, 2000);
-            downTimer = setTimeout(function () {
-              setPreviousGrid(_.cloneDeep(grid));
-              setGrid(onLongClick(hexagon, grid2));
-            }, 1000);
+            // }, 1000);
           }}
           onMouseUp={() => {
             clearTimeout(downTimer);
             setGrid(previousgrid);
           }}
           onClick={() => {
-            if (downTimer < 1000) {
-              //let grid2 = { ...grid };
-              //setGrid(grid2)
-              setCurrentHexagon(hexagon);
-              //setmousePassedOnHexagon(true);
-              //displayOnMouseHexagon()
-              // MoveKnight(hexagon.coordInGrid);
-            }
+            //let grid2 = { ...grid };
+            //setGrid(grid2)
+            setCurrentHexagon(hexagon);
+            setPosCaracterInSvg(hexagon.coordCenter);
+            setPosCaracterInGrid(hexagon.coordInGrid);
+            //setmousePassedOnHexagon(true);
+            //displayOnMouseHexagon()
+            // MoveKnight(hexagon.coordInGrid);
           }}
           onMouseEnter={() => {
             //need to declare a new grid to refresh memory
@@ -96,6 +111,15 @@ export function App() {
             //fill="url(#grass)"
           />
 
+          {/* <circle
+            cx={hexagon.coordCenter.x}
+            cy={hexagon.coordCenter.y}
+            r="40"
+            stroke="black"
+            stroke-width="3"
+            fill="red"
+          /> */}
+
           <text
             x={hexagon.coordCenter.x}
             y={hexagon.coordCenter.y}
@@ -107,7 +131,6 @@ export function App() {
           >
             {`${hexagon.coordInGrid.x}, ${hexagon.coordInGrid.y}`}
           </text>
-
           {/* <svg width="400" height="400"> */}
           <defs>
             <pattern
@@ -178,9 +201,87 @@ export function App() {
     return (
       <polygon
         points={getHexagonCoordPointInString(hexagonDisplayed)}
-        fill={hexagonDisplayed.color}
+        fill={hexagonFillTest(hexagonDisplayed)}
         stroke="black"
       />
+    );
+  }
+
+  function displayCaracter() {
+    var downTimer = 0;
+
+    // console.log("kinght heigt =", document.getElementById(knight).height);
+    console.log(`width: ${knight.naturalWidth}, height:${knight.height}`);
+
+    return (
+      <g
+        key="Caracter"
+        //draggable="true"
+        //onDragStart=
+        onMouseDown={() => {
+          setIsPushedDown(true);
+          clearTimeout(downTimer);
+          let grid2 = { ...grid };
+          //Trigger function onLongClick after a 1000ms long click
+          // setTimeout(function () {
+          //   setGrid(onLongClick(hexagon, grid2));
+          // }, 2000);
+          downTimer = setTimeout(function () {
+            setPreviousGrid(_.cloneDeep(grid));
+            setGrid(
+              onLongClick(
+                grid.hexagons[posCaracterInGrid.x][posCaracterInGrid.y],
+                grid2,
+              ),
+            );
+          }, 1000);
+        }}
+        onMouseMove={e => {
+          //Get the coordinates of the mouse inside the element
+          if (isPushedDown === true) {
+            setPosCaracterInSvg({
+              x: e.nativeEvent.offsetX,
+              y: e.nativeEvent.offsetY,
+            });
+          }
+        }}
+        onMouseUp={() => {
+          clearTimeout(downTimer);
+          setGrid(previousgrid);
+          setIsPushedDown(false);
+        }}
+      >
+        <rect
+          width="60"
+          height="60"
+          //x and y pos are x = pos - width/2 and  y = pos-height/2
+          x={posCaracterInSvg.x - 30}
+          y={posCaracterInSvg.y - 30}
+          fill="url(#knight)"
+        />
+
+        <defs>
+          <pattern
+            id="knight"
+            x="0"
+            y="0"
+            width="1"
+            height="1"
+            viewBox="0 0 900 900"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <image width="900" height="900" href={knight} />
+          </pattern>
+        </defs>
+        {/* <circle
+          cx={posCaracterInSvg.x}
+          cy={posCaracterInSvg.y}
+          r="20"
+          //stroke="black"
+          //stroke-width="3"
+          fill="red"
+        /> */}
+      </g>
     );
   }
 
@@ -198,6 +299,7 @@ export function App() {
           height={grid.hexagonSize * 2 * grid.numberRow}
         >
           {DisplayGridWithSvg()}
+          {displayCaracter()}
         </svg>
       </div>
 
@@ -207,7 +309,7 @@ export function App() {
             {displayCurrentHexagon()}
           </svg>
         </div>
-        <div className="downRight-encounter">BIP BOUP BOUP BIP</div>
+        <div className="downRight-encounter"></div>
       </div>
     </div>
   );

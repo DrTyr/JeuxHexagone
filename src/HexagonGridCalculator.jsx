@@ -59,6 +59,7 @@ function generateAllTheHexagones(grid) {
         color: "",
         fill: "",
         opacity: 1,
+        circleOnThisHexagon: false,
       };
 
       //Testing if drawing odd or even column i
@@ -127,7 +128,7 @@ export function generateEntireGrid() {
 }
 
 //Get the grid and return the coordonate, on the grid, of a random hexagon
-function getCoordonateRandomHexagoneInGrid(grid) {
+export function getCoordonateRandomHexagoneInGrid(grid) {
   //Generate a random whole number between 0 and grid.numberColumn
   let randomColumn = Math.floor(Math.random() * grid.numberColumn);
   let randomRow = Math.floor(Math.random() * grid.numberRow);

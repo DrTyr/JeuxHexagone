@@ -8,9 +8,9 @@ export function onLongClick(hexagon, grid) {
     grid.numberRow,
   );
 
-  //Set the opacity of every hexagon of the grid to 0.5
+  //Set the opacity of every hexagon of the grid to 0.3
   grid.hexagons.map(hexagons =>
-    hexagons.map(hexagon => (hexagon.opacity = 0.5)),
+    hexagons.map(hexagon => (hexagon.opacity = 0.3)),
   );
 
   //Set back the opacity of the neighbours to 1
