@@ -9,7 +9,7 @@ import {
   generateOneHexagone,
   getCoordonateRandomHexagoneInGrid,
 } from "./HexagonGridCalculator";
-import { getRandomColor } from "./library";
+import { getRandomColor, convertAsCaracterChain } from "./library";
 import { onLongClick } from "./InteractionsWithHexagons";
 import banditCamp from "./BanditCamp.jpg";
 import grass from "./Grass.png";
@@ -29,19 +29,29 @@ export function App() {
   );
   const [isPushedDown, setIsPushedDown] = useState(false);
 
-  let windowWidth = window.innerWidth;
-  let windowHeight = window.innerHeight;
+  //Hack too automatic resize svg inside topRight-hexagonDisplay <div> the size of this <div>
+  //This 2 variables will be upadte after the first render with the usage of UseEffect()
+  const [
+    topRightHexagonDisplayWidth,
+    setTopRightHexagonDisplayWidth,
+  ] = useState();
+  const [
+    topRightHexagonDisplayHeight,
+    setTopRightHexagonDisplayHeight,
+  ] = useState();
 
   // let grid = generateEntireGrid();
   // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
   // let hexagonColor = grid.hexagons[0][0].color;
 
-  // useEffect(() => {
-
-  //   DisplayOnMouseHexagon();
-  //   DisplayGridWithSvg();
-
-  // }, [grid, currentHexagon, mousePassedOnHexagon]);
+  useEffect(() => {
+    setTopRightHexagonDisplayWidth(
+      document.getElementById("topRight-hexagonDisplay").clientWidth,
+    );
+    setTopRightHexagonDisplayHeight(
+      document.getElementById("topRight-hexagonDisplay").clientHeight,
+    );
+  }, []);
 
   //Test if hexagon as a .fill paramater, of not return blue as default fill color
   function hexagonFillTest(hexagon) {
@@ -186,13 +196,38 @@ export function App() {
       return;
     }
 
+    //Use _.cloneDeep to create a new memory space for hexagonDisplayed
+    //otherwise currentHexagon and hexagonDisplayed are the same hexagon in the memory
     let hexagonDisplayed = _.cloneDeep(currentHexagon);
 
     hexagonDisplayed = {
       ...hexagonDisplayed,
-      coordCenter: { x: 130, y: 100 },
+      //coordCenter: { x: 130, y: 100 },
       size: 100,
+      // coordCenter: {
+      //   x:
+      //     document.getElementById("topRight-hexagonDisplay").clientWidth -
+      //     (document.getElementById("topRight-hexagonDisplay").clientWidth -
+      //       hexagonDisplayed.size * 2),
+      //   y:
+      //     document.getElementById("topRight-hexagonDisplay").clientHeight -
+      //     (document.getElementById("topRight-hexagonDisplay").clientHeight -
+      //       hexagonDisplayed.size * 2),
+      // },
+      // coordCenter: {
+      //   x: topRightHexagonDisplayWidth - hexagonDisplayed.size,
+      //   y: topRightHexagonDisplayHeight / 2,
+      // },
     };
+
+    hexagonDisplayed.coordCenter = {
+      x:
+        topRightHexagonDisplayWidth -
+        (topRightHexagonDisplayWidth - hexagonDisplayed.size) +
+        10,
+      y: topRightHexagonDisplayHeight / 2,
+    };
+
     // hexagonDisplayed.coordCenter = { x: 100, y: 100 };
     // hexagonDisplayed.size = 100;
     hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(
@@ -214,7 +249,7 @@ export function App() {
     var downTimer = 0;
 
     // console.log("kinght heigt =", document.getElementById(knight).height);
-    console.log(`width: ${knight.naturalWidth}, height:${knight.height}`);
+    // console.log(`width: ${knight.naturalWidth}, height:${knight.height}`);
 
     return (
       <g
@@ -298,7 +333,7 @@ export function App() {
     <div className="mainDivFullScreen">
       <div className="subLeft-hexagonGrig">
         <svg
-          width={grid.hexagonSize * 2 * grid.numberRow}
+          width={grid.hexagonSize * 2 * (grid.numberRow - 1)}
           height={grid.hexagonSize * 2 * grid.numberColumn}
         >
           {DisplayGridWithSvg()}
@@ -307,8 +342,13 @@ export function App() {
       </div>
 
       <div className="subRight-hexagonDisplay-encounter">
-        <div className="topRight-hexagonDisplay">
-          <svg width="500" height="200">
+        <div className="topRight-hexagonDisplay" id="topRight-hexagonDisplay">
+          <svg
+            //viewBox="0 0 100 100"
+            //preserveAspectRatio="xMidYMid meet"
+            width={topRightHexagonDisplayWidth}
+            height={topRightHexagonDisplayHeight}
+          >
             {displayCurrentHexagon()}
           </svg>
         </div>

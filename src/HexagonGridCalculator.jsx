@@ -5,16 +5,25 @@ const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
 //get height and width of the browser
-let windowWidth = window.innerWidth;
-let windowHeight = window.innerHeight;
+//let windowWidth = window.innerWidth;
+//let windowHeight = window.innerHeight;
 // !!!!!! row and column are inverted, to expend the grid width add one more Row
 const numberColumn = 8;
 const numberRow = 9;
 //const hexagonSizes = 60;
 //Calculate hexagon size depending on browser window size
-let hexagonSizes = windowWidth / numberColumn / 2 / 2;
-const xFirstHesagonCenter = 50;
-const yFirstHesagonCenter = 50;
+let hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
+const xFirstHexagonCenter = hexagonSizes;
+const yFirstHexagonCenter = hexagonSizes;
+
+//Will work if f5 pressed after resize, TODO : dynamique redraw of grid if windows size change
+// will be called whenever window size changes
+window.addEventListener("resize", function () {
+  // viewport and full window dimensions will change
+
+  hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
+  console.log("Hexagon size = ", hexagonSizes);
+});
 
 export function generateOneHexagone() {
   // if (typeof (definedSize) == 'undefined') {
@@ -118,7 +127,7 @@ function randomlyFillhexagoneWithBanditCampImg(grid) {
 //Function the generate the Grid as object gridObject of object hexagonObject
 export function generateEntireGrid() {
   let grid = {
-    firsthexagonCenter: { x: xFirstHesagonCenter, y: yFirstHesagonCenter },
+    firsthexagonCenter: { x: xFirstHexagonCenter, y: yFirstHexagonCenter },
     hexagons: [],
     numberColumn: numberColumn,
     numberRow: numberRow,

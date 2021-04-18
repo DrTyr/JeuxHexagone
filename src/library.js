@@ -8,13 +8,13 @@ export function getRandomColor() {
 }
 
 export function inverseBoolean(boolean) {
-
   if (boolean === true) {
-    return (false)
+    return false;
+  } else {
+    return true;
   }
-  else {
-    return (true)
-  }
-
 }
 
+export function convertAsCaracterChain(chain) {
+  return `${chain}`;
+}

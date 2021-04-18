@@ -1,13 +1,24 @@
-Apprendre à utiliser Canvas
+OK Apprendre à utiliser Canvas
    OK  Dessiner qqchose 
    OK  Dessiner qqchose ou je veux
    OK dessiner qqchose ou je veux de la taille que je veux
    OK Dessiner plusieurs choses
+   OK Apprendre à calculer des hexagones
+   OK Dessiner un hexagone
 
-OK Apprendre à calculer des hexagones
-OK Dessiner un hexagone
-
-Dessiner une grille d'hexagone
+OK Dessiner une grille d'hexagone
    OK Dessiner les colonnes paires
    OK Dessiner les colonnes impaires (décalé)
-    Dessiner la grille complète en une fois
+   OK Dessiner la grille complète en une fois
+
+OK Changer de technique et utiliser SVG
+   OK Apprendre à dessiner un hexagone en SVG
+   OK Apprendre à remplir un hexagone avec une image
+   OK Apprendre à gérer les events et interragir avec un hexagone
+
+Lors d'un clique sur le personnage, afficher les voisins et dessiner une flêche vers le voisins sous la souris
+Au clique sur un voisin, déplacer le personnage sur le voisin sélectionné
+
+Recalculer la grille si la taille de la fenêtre change pour diminuer la taille de la grille
+   Piste : ne pas modifier la taille de la gille mais modifier le viewport du svg
+   OK HexagoneDisplayed est positionné automatiquement en fonction de la taille de la <div>
