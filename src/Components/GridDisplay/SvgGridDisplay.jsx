@@ -11,7 +11,6 @@ import "./SvgGridDisplay.css";
 //Functions imports////////////////////////////////////////
 import {
   generateEntireGrid,
-  getOnehexagonAllSummitCoordinate,
   getHexagonCoordPointInString,
 } from "../GridGenerator/HexagonGridCalculator";
 import { getRandomColor } from "../../library";
@@ -19,9 +18,9 @@ import { onLongClick, hexagonFillTest } from "./InteractionsWithHexagons";
 ///////////////////////////////////////////////////////////
 
 //Assets imports///////////////////////////////////////////
-import banditCamp from "../Assets/BanditCamp.jpg";
-import grass from "../Assets/Grass.png";
-import knight from "../Assets/knight.jpg";
+import banditCamp from "../../Assets/BanditCamp.jpg";
+import grass from "../../Assets/Grass.png";
+import knight from "../../Assets/knight.jpg";
 ///////////////////////////////////////////////////////////
 
 //React Component names MUST begin with a maj so React know its a component

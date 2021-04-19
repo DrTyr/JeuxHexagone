@@ -44,7 +44,7 @@ export function App() {
       </div>
       <div className="subRight-hexagonDisplay-encounter">
         <div className="topRight-hexagonDisplay" id="topRight-hexagonDisplay">
-          <DisplayCurrentHexagon {...topRightHexagonDisplaySize} />
+          {/* <DisplayCurrentHexagon {...topRightHexagonDisplaySize} /> */}
         </div>
         <div className="downRight-encounter">TEST</div>
       </div>
