@@ -105,8 +105,8 @@ function randomlyFillhexagoneWithBanditCampImg(grid) {
   let coordonate2 = getCoordonateRandomHexagoneInGrid(grid);
   //
 
-  grid.hexagons[coordonate.x][coordonate.y].fill = "url(#banditCamp)";
-  grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#grass)";
+  grid.hexagons[coordonate.x][coordonate.y].fill = "url(#grass)";
+  grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#banditCamp)";
 
   return grid;
 }

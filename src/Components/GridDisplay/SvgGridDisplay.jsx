@@ -15,6 +15,7 @@ import {
 import { getRandomColor } from "../../library";
 import { hexagonFillTest } from "./InteractionsWithHexagons";
 import DisplayCaracter from "../PlayableCaracterDisplay/DisplayCaracter";
+//import "./GridFill";
 ///////////////////////////////////////////////////////////
 
 //Assets imports///////////////////////////////////////////
