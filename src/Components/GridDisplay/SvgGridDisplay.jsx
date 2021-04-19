@@ -19,9 +19,9 @@ import { onLongClick, hexagonFillTest } from "./InteractionsWithHexagons";
 ///////////////////////////////////////////////////////////
 
 //Assets imports///////////////////////////////////////////
-import banditCamp from "./BanditCamp.jpg";
-import grass from "./Grass.png";
-import knight from "../CaracterDisplay/knight.jpg";
+import banditCamp from "../Assets/BanditCamp.jpg";
+import grass from "../Assets/Grass.png";
+import knight from "../Assets/knight.jpg";
 ///////////////////////////////////////////////////////////
 
 //React Component names MUST begin with a maj so React know its a component
