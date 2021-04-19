@@ -7,11 +7,13 @@ import "./App.css";
 //Functions imports////////////////////////////////////////
 import GridDisplay from "./Components/GridDisplay/SvgGridDisplay";
 import DisplayCurrentHexagon from "./Components/CurrentHexagonDisplay/CurrentHexagonDisplay";
+
+import Parent from "./Parent";
 ///////////////////////////////////////////////////////////
 //Assets imports///////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-export function App() {
+export function AppOld() {
   //Hack too automatic resize svg inside topRight-hexagonDisplay <div> the size of this <div>
   //This 2 variables will be upadte after the first render with the usage of UseEffect()
   const [topRightHexagonDisplaySize, setTopRightHexagonDisplaySize] = useState({
@@ -50,6 +52,10 @@ export function App() {
       </div>
     </div>
   );
+}
+
+function App() {
+  return <Parent />;
 }
 
 export default App;
