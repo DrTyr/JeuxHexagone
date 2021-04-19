@@ -1,15 +1,15 @@
 import "./App.css";
 import _ from "lodash";
 import React, { useState, Fragment, useEffect } from "react";
-import { getHexagonCoordPointInString } from "./SvgGridGenerator";
+import { getHexagonCoordPointInString } from "./Components/GridGenerator/HexagonGridCalculator";
 import {
   generateEntireGrid,
   getOnehexagonAllSummitCoordinate,
   generateOneHexagone,
   getCoordonateRandomHexagoneInGrid,
-} from "./HexagonGridCalculator";
+} from "./Components/GridGenerator/HexagonGridCalculator";
 import { getRandomColor, convertAsCaracterChain } from "./library";
-import { onLongClick } from "./InteractionsWithHexagons";
+import { onLongClick } from "./Components/GridDisplay/InteractionsWithHexagons";
 import banditCamp from "./Components/GridDisplay/BanditCamp.jpg";
 import grass from "./Components/GridDisplay/Grass.png";
 import knight from "./Components/CaracterDisplay/knight.jpg";
