@@ -12,15 +12,6 @@ body {
   display: flex;
 }
 
-.subLeft-hexagonGrig {
-  width: 50%;
-  height: 100%;
-  /* background-color: brown; */
-  margin-left: 50px;
-  display: grid;
-  place-items: center;
-}
-
 .subRight-hexagonDisplay-encounter {
   width: 50%;
   height: 100%;

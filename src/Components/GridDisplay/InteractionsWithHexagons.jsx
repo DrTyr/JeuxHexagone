@@ -24,3 +24,12 @@ export function onLongClick(hexagon, grid) {
 
   return grid;
 }
+
+//Test if hexagon as a .fill paramater
+export function hexagonFillTest(hexagon) {
+  if (hexagon.fill === "") {
+    return hexagon.color;
+  } else {
+    return `${hexagon.fill}`;
+  }
+}
