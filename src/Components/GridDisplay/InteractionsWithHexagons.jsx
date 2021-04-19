@@ -2,7 +2,7 @@
 import { getNeighbourCoordinateOfOneHexagone } from "../GridGenerator/HexagonGridCalculator.jsx";
 ///////////////////////////////////////////////////////////
 
-export function onLongClick(hexagon, grid) {
+export function displayNeighbours(hexagon, grid) {
   let neighbourCoordinate = getNeighbourCoordinateOfOneHexagone(
     hexagon.coordInGrid.x,
     hexagon.coordInGrid.y,

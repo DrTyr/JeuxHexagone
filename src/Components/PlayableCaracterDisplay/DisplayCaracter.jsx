@@ -7,7 +7,7 @@ import _ from "lodash";
 ///////////////////////////////////////////////////////////
 
 //Functions imports////////////////////////////////////////
-import { onLongClick } from "../GridDisplay/InteractionsWithHexagons";
+import { displayNeighbours } from "../GridDisplay/InteractionsWithHexagons";
 ///////////////////////////////////////////////////////////
 
 //Assets imports///////////////////////////////////////////
@@ -26,8 +26,6 @@ export function DisplayCaracter({
 }) {
   const [isPushedDown, setIsPushedDown] = useState(false);
 
-  var downTimer = 0;
-
   console.log("inside child", posCaracterInSvg);
 
   return (
@@ -35,17 +33,14 @@ export function DisplayCaracter({
       key="Caracter"
       onMouseDown={() => {
         setIsPushedDown(true);
-        clearTimeout(downTimer);
         let grid2 = { ...grid };
-        downTimer = setTimeout(function () {
-          setPreviousGrid(_.cloneDeep(grid));
-          setGrid(
-            onLongClick(
-              grid.hexagons[posCaracterInGrid.x][posCaracterInGrid.y],
-              grid2,
-            ),
-          );
-        }, 1000);
+        setPreviousGrid(_.cloneDeep(grid));
+        setGrid(
+          displayNeighbours(
+            grid.hexagons[posCaracterInGrid.x][posCaracterInGrid.y],
+            grid2,
+          ),
+        );
       }}
       //   onMouseMove={e => {
       //     //Get the coordinates of the mouse inside the element
@@ -57,7 +52,10 @@ export function DisplayCaracter({
       //     }
       //   }}
       onMouseUp={() => {
-        clearTimeout(downTimer);
+        setGrid(previousgrid);
+        setIsPushedDown(false);
+      }}
+      onMouseLeave={() => {
         setGrid(previousgrid);
         setIsPushedDown(false);
       }}

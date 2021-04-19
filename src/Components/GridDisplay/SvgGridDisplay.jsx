@@ -145,7 +145,9 @@ export function GridDisplay({ subLeftHexagonGrigSize, setCurrentHexagon }) {
 
   return (
     <svg
-      viewBox={`0 0 ${subLeftHexagonGrigSize.width} ${subLeftHexagonGrigSize.height}`}
+      viewBox={`0 0 ${subLeftHexagonGrigSize.width * 1.3} ${
+        subLeftHexagonGrigSize.height * 1.3
+      }`}
       preserveAspectRatio="xMidYMid meet"
     >
       {displayGridWithSvg()}
