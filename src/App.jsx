@@ -1,7 +1,6 @@
 import "./App.css";
 import _ from "lodash";
 import React, { useState, Fragment, useEffect } from "react";
-//import Canvas from "./CanvasGridGenerator";
 import { getHexagonCoordPointInString } from "./SvgGridGenerator";
 import {
   generateEntireGrid,
@@ -11,16 +10,15 @@ import {
 } from "./HexagonGridCalculator";
 import { getRandomColor, convertAsCaracterChain } from "./library";
 import { onLongClick } from "./InteractionsWithHexagons";
-import banditCamp from "./BanditCamp.jpg";
-import grass from "./Grass.png";
-import knight from "./knight.jpg";
-//import { gridRender } from "./SvgGridDisplay";
+import banditCamp from "./Components/GridDisplay/BanditCamp.jpg";
+import grass from "./Components/GridDisplay/Grass.png";
+import knight from "./Components/CaracterDisplay/knight.jpg";
+import GridRender from "./Components/GridDisplay/SvgGridDisplay";
 
 export function App() {
   const [grid, setGrid] = useState(generateEntireGrid());
   const [currentHexagon, setCurrentHexagon] = useState();
   const [previousgrid, setPreviousGrid] = useState(grid);
-  const [hexagonKnightOn, setHexagonKnightOn] = useState();
   const [posCaracterInGrid, setPosCaracterInGrid] = useState(
     grid.hexagons[0][0].coordInGrid,
   );
@@ -31,26 +29,28 @@ export function App() {
 
   //Hack too automatic resize svg inside topRight-hexagonDisplay <div> the size of this <div>
   //This 2 variables will be upadte after the first render with the usage of UseEffect()
-  const [
-    topRightHexagonDisplayWidth,
-    setTopRightHexagonDisplayWidth,
-  ] = useState();
-  const [
-    topRightHexagonDisplayHeight,
-    setTopRightHexagonDisplayHeight,
-  ] = useState();
+  const [topRightHexagonDisplaySize, setTopRightHexagonDisplaySize] = useState({
+    width: 0,
+    height: 0,
+  });
 
-  // let grid = generateEntireGrid();
-  // let hexagonCoordForSvg = getHexagonCoordPointInString(grid, 0, 0);
-  // let hexagonColor = grid.hexagons[0][0].color;
+  const [subLeftHexagonGrigSize, setSubLeftHexagonGrigSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
-    setTopRightHexagonDisplayWidth(
-      document.getElementById("topRight-hexagonDisplay").clientWidth,
-    );
-    setTopRightHexagonDisplayHeight(
-      document.getElementById("topRight-hexagonDisplay").clientHeight,
-    );
+    setTopRightHexagonDisplaySize({
+      width: document.getElementById("topRight-hexagonDisplay").clientWidth,
+      height: document.getElementById("topRight-hexagonDisplay").clientHeight,
+    });
+    setSubLeftHexagonGrigSize({
+      width: document.getElementById("subLeft-hexagonGrig").clientWidth,
+      height: document.getElementById("subLeft-hexagonGrig").clientHeight,
+    });
+
+    //To resize displayCurrentHexagon, create it a as react component with his own useEffect ?
+    //displayCurrentHexagon();
   }, []);
 
   //Test if hexagon as a .fill paramater, of not return blue as default fill color
@@ -202,34 +202,19 @@ export function App() {
 
     hexagonDisplayed = {
       ...hexagonDisplayed,
-      //coordCenter: { x: 130, y: 100 },
-      size: 100,
-      // coordCenter: {
-      //   x:
-      //     document.getElementById("topRight-hexagonDisplay").clientWidth -
-      //     (document.getElementById("topRight-hexagonDisplay").clientWidth -
-      //       hexagonDisplayed.size * 2),
-      //   y:
-      //     document.getElementById("topRight-hexagonDisplay").clientHeight -
-      //     (document.getElementById("topRight-hexagonDisplay").clientHeight -
-      //       hexagonDisplayed.size * 2),
-      // },
-      // coordCenter: {
-      //   x: topRightHexagonDisplayWidth - hexagonDisplayed.size,
-      //   y: topRightHexagonDisplayHeight / 2,
-      // },
+      size: (45 / 100) * topRightHexagonDisplaySize.height,
     };
+
+    //Change coordCenter after for hexagonDisplayed.size to be update
 
     hexagonDisplayed.coordCenter = {
       x:
-        topRightHexagonDisplayWidth -
-        (topRightHexagonDisplayWidth - hexagonDisplayed.size) +
+        topRightHexagonDisplaySize.width -
+        (topRightHexagonDisplaySize.width - hexagonDisplayed.size) +
         10,
-      y: topRightHexagonDisplayHeight / 2,
+      y: topRightHexagonDisplaySize.height / 2,
     };
 
-    // hexagonDisplayed.coordCenter = { x: 100, y: 100 };
-    // hexagonDisplayed.size = 100;
     hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(
       hexagonDisplayed,
     );
@@ -248,22 +233,13 @@ export function App() {
   function displayCaracter() {
     var downTimer = 0;
 
-    // console.log("kinght heigt =", document.getElementById(knight).height);
-    // console.log(`width: ${knight.naturalWidth}, height:${knight.height}`);
-
     return (
       <g
         key="Caracter"
-        //draggable="true"
-        //onDragStart=
         onMouseDown={() => {
           setIsPushedDown(true);
           clearTimeout(downTimer);
           let grid2 = { ...grid };
-          //Trigger function onLongClick after a 1000ms long click
-          // setTimeout(function () {
-          //   setGrid(onLongClick(hexagon, grid2));
-          // }, 2000);
           downTimer = setTimeout(function () {
             setPreviousGrid(_.cloneDeep(grid));
             setGrid(
@@ -311,30 +287,18 @@ export function App() {
             <image width="900" height="900" href={knight} />
           </pattern>
         </defs>
-        {/* <circle
-          cx={posCaracterInSvg.x}
-          cy={posCaracterInSvg.y}
-          r="20"
-          //stroke="black"
-          //stroke-width="3"
-          fill="red"
-        /> */}
       </g>
     );
   }
 
-  // function MoveKnight(pos) {
-  //   setHexagonKnightOn(pos);
-
-  //   <img src={knight} alt="knight"></img>;
-  // }
-
   return (
     <div className="mainDivFullScreen">
-      <div className="subLeft-hexagonGrig">
+      <div className="subLeft-hexagonGrig" id="subLeft-hexagonGrig">
         <svg
-          width={grid.hexagonSize * 2 * (grid.numberRow - 1)}
-          height={grid.hexagonSize * 2 * grid.numberColumn}
+          viewBox={`0 0 ${subLeftHexagonGrigSize.width} ${subLeftHexagonGrigSize.height}`}
+          preserveAspectRatio="xMidYMid meet"
+          //width={subLeftHexagonGrigSize.width}
+          //height={subLeftHexagonGrigSize.height}
         >
           {DisplayGridWithSvg()}
           {displayCaracter()}
@@ -344,15 +308,17 @@ export function App() {
       <div className="subRight-hexagonDisplay-encounter">
         <div className="topRight-hexagonDisplay" id="topRight-hexagonDisplay">
           <svg
-            //viewBox="0 0 100 100"
-            //preserveAspectRatio="xMidYMid meet"
-            width={topRightHexagonDisplayWidth}
-            height={topRightHexagonDisplayHeight}
+            viewBox={`0 0 ${topRightHexagonDisplaySize.width} ${topRightHexagonDisplaySize.height}`}
+            preserveAspectRatio="xMidYMid meet"
+            //width={topRightHexagonDisplaySize.width}
+            //height={topRightHexagonDisplaySize.height}
           >
             {displayCurrentHexagon()}
           </svg>
         </div>
-        <div className="downRight-encounter"></div>
+        <div className="downRight-encounter">
+          <GridRender />
+        </div>
       </div>
     </div>
   );

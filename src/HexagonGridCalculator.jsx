@@ -10,20 +10,20 @@ const sin = Math.sin;
 // !!!!!! row and column are inverted, to expend the grid width add one more Row
 const numberColumn = 8;
 const numberRow = 9;
-//const hexagonSizes = 60;
+const hexagonSizes = 60;
 //Calculate hexagon size depending on browser window size
-let hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
+//let hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
 const xFirstHexagonCenter = hexagonSizes;
 const yFirstHexagonCenter = hexagonSizes;
 
 //Will work if f5 pressed after resize, TODO : dynamique redraw of grid if windows size change
 // will be called whenever window size changes
-window.addEventListener("resize", function () {
-  // viewport and full window dimensions will change
+// window.addEventListener("resize", function () {
+//   // viewport and full window dimensions will change
 
-  hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
-  console.log("Hexagon size = ", hexagonSizes);
-});
+//   hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
+//   console.log("Hexagon size = ", hexagonSizes);
+// });
 
 export function generateOneHexagone() {
   // if (typeof (definedSize) == 'undefined') {
