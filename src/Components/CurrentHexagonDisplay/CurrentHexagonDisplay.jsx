@@ -22,15 +22,15 @@ import { hexagonFillTest } from "../GridDisplay/InteractionsWithHexagons";
 // import knight from "../CaracterDisplay/knight.jpg";
 ///////////////////////////////////////////////////////////
 
-export function DisplayCurrentHexagon(
+export function DisplayCurrentHexagon({
   currentHexagon,
   topRightHexagonDisplaySize,
-) {
+}) {
   //const [currentHexagon, setCurrentHexagon] = useState();
 
   //Get out of the function if currentHexagon don't exist
   if (!currentHexagon) {
-    return;
+    return null;
   }
 
   //Use _.cloneDeep to create a new memory space for hexagonDisplayed
