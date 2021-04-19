@@ -1,19 +1,23 @@
+//Library imports//////////////////////////////////////////
 import "./App.css";
 import _ from "lodash";
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+///////////////////////////////////////////////////////////
+//Functions imports////////////////////////////////////////
 import { getHexagonCoordPointInString } from "./Components/GridGenerator/HexagonGridCalculator";
 import {
   generateEntireGrid,
   getOnehexagonAllSummitCoordinate,
-  generateOneHexagone,
-  getCoordonateRandomHexagoneInGrid,
 } from "./Components/GridGenerator/HexagonGridCalculator";
-import { getRandomColor, convertAsCaracterChain } from "./library";
+import { getRandomColor } from "./library";
 import { onLongClick } from "./Components/GridDisplay/InteractionsWithHexagons";
+///////////////////////////////////////////////////////////
+//Assets imports///////////////////////////////////////////
 import banditCamp from "./Components/GridDisplay/BanditCamp.jpg";
 import grass from "./Components/GridDisplay/Grass.png";
 import knight from "./Components/CaracterDisplay/knight.jpg";
 import GridRender from "./Components/GridDisplay/SvgGridDisplay";
+///////////////////////////////////////////////////////////
 
 export function App() {
   const [grid, setGrid] = useState(generateEntireGrid());
@@ -53,18 +57,13 @@ export function App() {
     //displayCurrentHexagon();
   }, []);
 
-  //Test if hexagon as a .fill paramater, of not return blue as default fill color
+  //Test if hexagon as a .fill paramater
   function hexagonFillTest(hexagon) {
-    let blue = "#00BFFF";
-    //let red = "#ff0000";
-
     if (hexagon.fill === "") {
       return hexagon.color;
     } else {
       return `${hexagon.fill}`;
     }
-
-    // "url(#img1)"
   }
 
   function DisplayGridWithSvg() {
@@ -75,11 +74,7 @@ export function App() {
       hexagons.map(hexagon => (
         <g
           key={`indice${hexagon.indice}`}
-          onMouseOver={() => {
-            // if (isPushedDown === true) {
-            //setPosCaracterInSvg(hexagon.coordCenter);
-            // }
-          }}
+          onMouseOver={() => {}}
           onMouseDown={() => {
             // clearTimeout(downTimer);
             // let grid2 = { ...grid };
@@ -97,41 +92,23 @@ export function App() {
             setGrid(previousgrid);
           }}
           onClick={() => {
-            //let grid2 = { ...grid };
-            //setGrid(grid2)
             setCurrentHexagon(hexagon);
             setPosCaracterInSvg(hexagon.coordCenter);
             setPosCaracterInGrid(hexagon.coordInGrid);
-            //setmousePassedOnHexagon(true);
-            //displayOnMouseHexagon()
-            // MoveKnight(hexagon.coordInGrid);
           }}
           onMouseEnter={() => {
             //need to declare a new grid to refresh memory
             let grid2 = { ...grid };
             hexagon.color = getRandomColor();
-            //setCurrentHexagon(grid2.hexagons[hexagon.coordInGrid.x][hexagon.coordInGrid.y]);
             setGrid(grid2);
           }}
-          onMouseLeave={() => {
-            //setCurrentHexagon(null);
-          }}
+          onMouseLeave={() => {}}
         >
           <polygon
             points={getHexagonCoordPointInString(hexagon)}
             fill={hexagonFillTest(hexagon)}
             opacity={hexagon.opacity}
-            //fill="url(#grass)"
           />
-
-          {/* <circle
-            cx={hexagon.coordCenter.x}
-            cy={hexagon.coordCenter.y}
-            r="40"
-            stroke="black"
-            stroke-width="3"
-            fill="red"
-          /> */}
 
           <text
             x={hexagon.coordCenter.x}
@@ -140,11 +117,10 @@ export function App() {
             fontSize="10"
             fill="white"
             textAnchor="middle"
-            //key={`text${hexagon.indice}`}
           >
             {`${hexagon.coordInGrid.x}, ${hexagon.coordInGrid.y}`}
           </text>
-          {/* <svg width="400" height="400"> */}
+
           <defs>
             <pattern
               id="grass"
@@ -175,15 +151,6 @@ export function App() {
                 height="310"
               />
             </pattern>
-            {/* <image
-              id="knighImg"
-              href={knight}
-              //size of the img
-              width="900"
-              height="900"
-              x={hexagon.coordCenter.x}
-              y={hexagon.coordCenter.y}
-            /> */}
           </defs>
         </g>
       )),
@@ -218,8 +185,6 @@ export function App() {
     hexagonDisplayed.coordSommit = getOnehexagonAllSummitCoordinate(
       hexagonDisplayed,
     );
-
-    // setmousePassedOnHexagon(false);
 
     return (
       <polygon
@@ -297,8 +262,6 @@ export function App() {
         <svg
           viewBox={`0 0 ${subLeftHexagonGrigSize.width} ${subLeftHexagonGrigSize.height}`}
           preserveAspectRatio="xMidYMid meet"
-          //width={subLeftHexagonGrigSize.width}
-          //height={subLeftHexagonGrigSize.height}
         >
           {DisplayGridWithSvg()}
           {displayCaracter()}
@@ -310,8 +273,6 @@ export function App() {
           <svg
             viewBox={`0 0 ${topRightHexagonDisplaySize.width} ${topRightHexagonDisplaySize.height}`}
             preserveAspectRatio="xMidYMid meet"
-            //width={topRightHexagonDisplaySize.width}
-            //height={topRightHexagonDisplaySize.height}
           >
             {displayCurrentHexagon()}
           </svg>

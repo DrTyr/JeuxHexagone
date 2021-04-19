@@ -1,4 +1,6 @@
+//Functions imports////////////////////////////////////////
 import { getNeighbourCoordinateOfOneHexagone } from "../GridGenerator/HexagonGridCalculator.jsx";
+///////////////////////////////////////////////////////////
 
 export function onLongClick(hexagon, grid) {
   let neighbourCoordinate = getNeighbourCoordinateOfOneHexagone(

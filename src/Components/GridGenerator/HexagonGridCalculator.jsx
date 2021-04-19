@@ -1,37 +1,21 @@
-//import React, { useState, useEffect, useRef } from "react";
+//Functions imports////////////////////////////////////////
 import { getRandomColor } from "../../library";
+///////////////////////////////////////////////////////////
 
+//Global variables////////////////////////////////////////
 const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
-//get height and width of the browser
-//let windowWidth = window.innerWidth;
-//let windowHeight = window.innerHeight;
 // !!!!!! row and column are inverted, to expend the grid width add one more Row
 const numberColumn = 8;
 const numberRow = 9;
 const hexagonSizes = 60;
-//Calculate hexagon size depending on browser window size
-//let hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
 const xFirstHexagonCenter = hexagonSizes;
 const yFirstHexagonCenter = hexagonSizes;
-
-//Will work if f5 pressed after resize, TODO : dynamique redraw of grid if windows size change
-// will be called whenever window size changes
-// window.addEventListener("resize", function () {
-//   // viewport and full window dimensions will change
-
-//   hexagonSizes = window.innerWidth / numberColumn / 2 / 2;
-//   console.log("Hexagon size = ", hexagonSizes);
-// });
+///////////////////////////////////////////////////////////
 
 export function getHexagonCoordPointInString(hexagon) {
-  //let coordInString = "";
   let coordList = hexagon.coordSommit;
-
-  //coordInString = coordList.toString()
-
-  // `${hello} ${bob}`
 
   let coordInString = `${coordList.x[0]},${coordList.y[0]} ${coordList.x[1]},${coordList.y[1]} ${coordList.x[2]},${coordList.y[2]} ${coordList.x[3]},${coordList.y[3]}  ${coordList.x[4]},${coordList.y[4]} ${coordList.x[5]},${coordList.y[5]}`;
 
@@ -39,14 +23,6 @@ export function getHexagonCoordPointInString(hexagon) {
 }
 
 export function generateOneHexagone() {
-  // if (typeof (definedSize) == 'undefined') {
-  //     definedSize = hexagonSizes;
-  // }
-
-  // if (typeof (defineColor) == 'undefined') {
-  //     defineColor = getRandomColor();
-  // }
-
   let hexagon = {
     indice: 0,
     coordInGrid: { x: 0, y: 0 },
@@ -98,14 +74,12 @@ function generateAllTheHexagones(grid) {
           grid.firsthexagonCenter.y +
           2 * j * sin((60 * PI) / 180) * hexagon.size +
           sin((60 * PI) / 180) * hexagon.size;
-        //hexagon.color = "red"
       } else {
         hexagon.coordCenter.x =
           grid.firsthexagonCenter.x + i * 1.5 * hexagon.size;
         hexagon.coordCenter.y =
           grid.firsthexagonCenter.y +
           j * 2 * sin((60 * PI) / 180) * hexagon.size;
-        //hexagon.color = "green"
       }
 
       hexagon.coordSommit = getOnehexagonAllSummitCoordinate(hexagon);
@@ -145,11 +119,9 @@ export function generateEntireGrid() {
     numberColumn: numberColumn,
     numberRow: numberRow,
     hexagonSize: hexagonSizes,
-    //numberhexagonInGrid: this.numberhexagonInColumn * this.numberhexagonInRow
   };
 
   grid = generateAllTheHexagones(grid);
-  //grid.hexagons[1][1].fill = "test";
   grid = randomlyFillhexagoneWithBanditCampImg(grid);
 
   return grid;
@@ -217,20 +189,20 @@ export function getNeighbourCoordinateOfOneHexagone(
 
 //(WIP) function to generate the coordondate of a path and affect selected points inside the
 //hexagon object so it can be get to draw the part of the path that go through a specific hexagon
-function generatePath(grid, lengthPath) {
-  //Define the starting hexagone at random
-  let startcoordinate = getCoordonateRandomHexagoneInGrid(grid);
+// function generatePath(grid, lengthPath) {
+//   //Define the starting hexagone at random
+//   let startcoordinate = getCoordonateRandomHexagoneInGrid(grid);
 
-  for (let i = 0; i <= lengthPath; i++) {
-    //Define coord in grid of it's neighbour
-    let neighbourCoordinate = getNeighbourCoordinateOfOneHexagone(
-      startcoordinate.x,
-      startcoordinate.y,
-    );
-    //Chose a random neighbour in the remaing ones
-    let chosenNeighbourCoordonate =
-      neighbourCoordinate[
-        Math.floor(Math.random() * neighbourCoordinate.length)
-      ];
-  }
-}
+//   for (let i = 0; i <= lengthPath; i++) {
+//     //Define coord in grid of it's neighbour
+//     let neighbourCoordinate = getNeighbourCoordinateOfOneHexagone(
+//       startcoordinate.x,
+//       startcoordinate.y,
+//     );
+//     //Chose a random neighbour in the remaing ones
+//     let chosenNeighbourCoordonate =
+//       neighbourCoordinate[
+//         Math.floor(Math.random() * neighbourCoordinate.length)
+//       ];
+//   }
+// }
