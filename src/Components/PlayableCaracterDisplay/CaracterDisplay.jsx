@@ -26,8 +26,6 @@ export function DisplayCaracter({
 }) {
   const [isPushedDown, setIsPushedDown] = useState(false);
 
-  console.log("inside child", posCaracterInSvg);
-
   return (
     <g
       key="Caracter"

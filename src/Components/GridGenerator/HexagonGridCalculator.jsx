@@ -29,7 +29,11 @@ export function generateOneHexagone() {
     coordSommit: { x: [], y: [] },
     coordCenter: { x: 0, y: 0 },
     size: hexagonSizes,
-    color: "black",
+    color: "",
+    fill: "",
+    opacity: 1,
+    circleOnThisHexagon: false,
+    encounterType: "",
   };
 
   return hexagon;
@@ -64,6 +68,7 @@ function generateAllTheHexagones(grid) {
         fill: "",
         opacity: 1,
         circleOnThisHexagon: false,
+        encounterType: null,
       };
 
       //Testing if drawing odd or even column i
@@ -102,11 +107,12 @@ function generateAllTheHexagones(grid) {
 function randomlyFillhexagoneWithBanditCampImg(grid) {
   //return objet coordinate with x and y of a random hexagon
   let coordonate = getCoordonateRandomHexagoneInGrid(grid);
-  let coordonate2 = getCoordonateRandomHexagoneInGrid(grid);
+  //let coordonate2 = getCoordonateRandomHexagoneInGrid(grid);
   //
 
-  grid.hexagons[coordonate.x][coordonate.y].fill = "url(#grass)";
-  grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#banditCamp)";
+  //grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#grass)";
+  grid.hexagons[coordonate.x][coordonate.y].fill = "url(#banditCamp)";
+  grid.hexagons[coordonate.x][coordonate.y].encounterType = "bandit";
 
   return grid;
 }

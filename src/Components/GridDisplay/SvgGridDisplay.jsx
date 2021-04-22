@@ -14,7 +14,7 @@ import {
 } from "../GridGenerator/HexagonGridCalculator";
 import { getRandomColor } from "../../library";
 import { hexagonFillTest } from "./InteractionsWithHexagons";
-import DisplayCaracter from "../PlayableCaracterDisplay/DisplayCaracter";
+import DisplayCaracter from "../PlayableCaracterDisplay/CaracterDisplay";
 //import "./GridFill";
 ///////////////////////////////////////////////////////////
 
@@ -141,8 +141,6 @@ export function GridDisplay({ subLeftHexagonGrigSize, setCurrentHexagon }) {
       )),
     );
   }
-
-  console.log("inside parents", posCaracterInSvg);
 
   return (
     <svg

@@ -7,6 +7,8 @@ import "./App.css";
 //Functions imports////////////////////////////////////////
 import GridDisplay from "./Components/GridDisplay/SvgGridDisplay";
 import DisplayCurrentHexagon from "./Components/CurrentHexagonDisplay/CurrentHexagonDisplay";
+import EncounterDisplay from "./Components/Encounter/EncounterDisplay";
+import { generateOneHexagone } from "./Components/GridGenerator/HexagonGridCalculator";
 ///////////////////////////////////////////////////////////
 //Assets imports///////////////////////////////////////////
 ///////////////////////////////////////////////////////////
@@ -24,7 +26,7 @@ export function App() {
   });
   //////////////////////////////
 
-  const [currentHexagon, setCurrentHexagon] = useState();
+  const [currentHexagon, setCurrentHexagon] = useState(generateOneHexagone());
 
   useEffect(() => {
     setTopRightHexagonDisplaySize({
@@ -38,6 +40,8 @@ export function App() {
     //To resize displayCurrentHexagon, create it a as react component with his own useEffect ?
     //displayCurrentHexagon();
   }, []);
+
+  console.log("Dans app :", currentHexagon);
 
   return (
     <div className="mainDivFullScreen">
@@ -54,7 +58,9 @@ export function App() {
             currentHexagon={currentHexagon}
           />
         </div>
-        <div className="downRight-encounter">TEST</div>
+        <div className="downRight-encounter">
+          <EncounterDisplay encounterType={currentHexagon.encounterType} />
+        </div>
       </div>
     </div>
   );
