@@ -23,22 +23,41 @@ export function DisplayCaracter({
   setPosCaracterInGrid,
   posCaracterInSvg,
   setPosCaracterInSvg,
+  neighboursAreDisplay,
+  setNeighboursAreDisplay,
 }) {
-  const [isPushedDown, setIsPushedDown] = useState(false);
+  //const [neighboursAreDisplay, setNeighboursAreDisplay] = useState(false);
 
   return (
     <g
       key="Caracter"
-      onMouseDown={() => {
-        setIsPushedDown(true);
-        let grid2 = { ...grid };
-        setPreviousGrid(_.cloneDeep(grid));
-        setGrid(
-          displayNeighbours(
-            grid.hexagons[posCaracterInGrid.x][posCaracterInGrid.y],
-            grid2,
-          ),
-        );
+      // onMouseDown={() => {
+      //   setIsPushedDown(true);
+      //   let grid2 = { ...grid };
+      //   setPreviousGrid(_.cloneDeep(grid));
+      //   setGrid(
+      //     displayNeighbours(
+      //       grid.hexagons[posCaracterInGrid.x][posCaracterInGrid.y],
+      //       grid2,
+      //     ),
+      //   );
+      // }}
+      onClick={() => {
+        if (neighboursAreDisplay === false) {
+          setNeighboursAreDisplay(true);
+          let grid2 = { ...grid };
+          setPreviousGrid(_.cloneDeep(grid));
+          setGrid(
+            displayNeighbours(
+              grid.hexagons[posCaracterInGrid.x][posCaracterInGrid.y],
+              grid2,
+            ),
+          );
+        }
+        if (neighboursAreDisplay === true) {
+          setNeighboursAreDisplay(false);
+          setGrid(previousgrid);
+        }
       }}
       //   onMouseMove={e => {
       //     //Get the coordinates of the mouse inside the element
@@ -49,14 +68,14 @@ export function DisplayCaracter({
       //       });
       //     }
       //   }}
-      onMouseUp={() => {
-        setGrid(previousgrid);
-        setIsPushedDown(false);
-      }}
-      onMouseLeave={() => {
-        setGrid(previousgrid);
-        setIsPushedDown(false);
-      }}
+      // onMouseUp={() => {
+      //   setGrid(previousgrid);
+      //   // setIsPushedDown(false);
+      // }}
+      // onMouseLeave={() => {
+      //   setGrid(previousgrid);
+      // setIsPushedDown(false);
+      // }}
     >
       <rect
         width="60"

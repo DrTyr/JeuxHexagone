@@ -33,6 +33,10 @@ export function DisplayCurrentHexagon({
     return null;
   }
 
+  if (currentHexagon.indice === -1) {
+    return null;
+  }
+
   //Use _.cloneDeep to create a new memory space for hexagonDisplayed
   //otherwise currentHexagon and hexagonDisplayed are the same hexagon in the memory
   let hexagonDisplayed = _.cloneDeep(currentHexagon);

@@ -41,14 +41,13 @@ export function App() {
     //displayCurrentHexagon();
   }, []);
 
-  console.log("Dans app :", currentHexagon);
-
   return (
     <div className="mainDivFullScreen">
       <div className="subLeft-hexagonGrig" id="subLeft-hexagonGrig">
         <GridDisplay
           subLeftHexagonGrigSize={subLeftHexagonGrigSize}
           setCurrentHexagon={setCurrentHexagon}
+          currentHexagon={currentHexagon}
         />
       </div>
       <div className="subRight-hexagonDisplay-encounter">

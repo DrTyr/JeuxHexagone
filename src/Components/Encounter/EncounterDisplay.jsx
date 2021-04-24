@@ -31,8 +31,6 @@ export function EncounterDisplay(encounterType) {
     setscene(detectEncounter(encounterType));
   }, [encounterType]);
 
-  console.log("Scene =", scene);
-
   function detectSceneToDisplay() {}
 
   function answersToDisplay() {
@@ -42,6 +40,7 @@ export function EncounterDisplay(encounterType) {
 
     return scene.answers.map(answer => (
       <button
+        class="button"
         onClick={() => {
           setscene(detectEncounter(encounterType, answer.goto));
         }}

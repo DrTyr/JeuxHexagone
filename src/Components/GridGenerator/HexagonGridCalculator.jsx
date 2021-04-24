@@ -13,6 +13,17 @@ const hexagonSizes = 60;
 const xFirstHexagonCenter = hexagonSizes;
 const yFirstHexagonCenter = hexagonSizes;
 ///////////////////////////////////////////////////////////
+let hexagon = {
+  indice: -1,
+  coordInGrid: { x: 0, y: 0 },
+  coordSommit: { x: [], y: [] },
+  coordCenter: { x: 0, y: 0 },
+  size: hexagonSizes,
+  color: null,
+  fill: null,
+  opacity: 1,
+  encounterType: null,
+};
 
 export function getHexagonCoordPointInString(hexagon) {
   let coordList = hexagon.coordSommit;
@@ -23,19 +34,6 @@ export function getHexagonCoordPointInString(hexagon) {
 }
 
 export function generateOneHexagone() {
-  let hexagon = {
-    indice: 0,
-    coordInGrid: { x: 0, y: 0 },
-    coordSommit: { x: [], y: [] },
-    coordCenter: { x: 0, y: 0 },
-    size: hexagonSizes,
-    color: "",
-    fill: "",
-    opacity: 1,
-    circleOnThisHexagon: false,
-    encounterType: "",
-  };
-
   return hexagon;
 }
 
@@ -67,7 +65,6 @@ function generateAllTheHexagones(grid) {
         color: "",
         fill: "",
         opacity: 1,
-        circleOnThisHexagon: false,
         encounterType: null,
       };
 
@@ -108,6 +105,7 @@ function randomlyFillhexagoneWithEncounter(grid) {
   //return objet coordinate with x and y of a random hexagon
   let coordonate = getCoordonateRandomHexagoneInGrid(grid);
   let coordonate2 = getCoordonateRandomHexagoneInGrid(grid);
+  //let coordonate3 = getCoordonateRandomHexagoneInGrid(grid);
   //
 
   //grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#grass)";

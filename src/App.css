@@ -9,6 +9,13 @@ body {
   margin: 0;
   height: 100vh;
   /* background-color: rgb(59, 129, 112); */
+  background-image: url(/Users/alois/DocumentHL/ApprentissageHTML/JeuxHexagone/src/Assets/waterTile.png);
+  background-repeat: repeat;
+  display: flex;
+}
+
+.subLeft-hexagonGrig {
+  margin-top: 2%;
   display: flex;
 }
 

@@ -16,6 +16,7 @@ import { getRandomColor } from "../../library";
 import { hexagonFillTest } from "./InteractionsWithHexagons";
 import DisplayCaracter from "../PlayableCaracterDisplay/CaracterDisplay";
 //import "./GridFill";
+import { getNeighbourCoordinateOfOneHexagone } from "../GridGenerator/HexagonGridCalculator.jsx";
 ///////////////////////////////////////////////////////////
 
 //Assets imports///////////////////////////////////////////
@@ -24,16 +25,32 @@ import grass from "../../Assets/Grass.png";
 ///////////////////////////////////////////////////////////
 
 //React Component names MUST begin with a maj so React know its a component
-export function GridDisplay({ subLeftHexagonGrigSize, setCurrentHexagon }) {
+export function GridDisplay({
+  subLeftHexagonGrigSize,
+  setCurrentHexagon,
+  currentHexagon,
+}) {
   const [grid, setGrid] = useState(generateEntireGrid());
   const [previousgrid, setPreviousGrid] = useState(grid);
   const [posCaracterInSvg, setPosCaracterInSvg] = useState(
-    grid.hexagons[5][5].coordCenter,
+    grid.hexagons[0][0].coordCenter,
   );
   const [posCaracterInGrid, setPosCaracterInGrid] = useState(
-    grid.hexagons[5][5].coordInGrid,
+    grid.hexagons[0][0].coordInGrid,
   );
 
+  //setCurrentHexagon(grid.hexagons[posCaracterInGrid.x][posCaracterInGrid.y]);
+
+  const [neighboursAreDisplay, setNeighboursAreDisplay] = useState(false);
+
+  const [neighbourCoordinates, setNeighbourCoordinates] = useState(
+    getNeighbourCoordinateOfOneHexagone(
+      currentHexagon.coordInGrid.x,
+      currentHexagon.coordInGrid.y,
+      grid.numberColumn,
+      grid.numberRow,
+    ),
+  );
   //const [currentHexagon, setCurrentHexagon] = useState();
 
   // const [subLeftHexagonGrigSize, setSubLeftHexagonGrigSize] = useState({
@@ -50,6 +67,21 @@ export function GridDisplay({ subLeftHexagonGrigSize, setCurrentHexagon }) {
   //   //To resize displayCurrentHexagon, create it a as react component with his own useEffect ?
   //   //displayCurrentHexagon();
   // }, []);
+
+  console.log("neighbourCoordinate length", neighbourCoordinates.length);
+
+  function testIfNeighbour(hexagon, neighbourCoordinates) {
+    for (let i = 0; i < neighbourCoordinates.length; i++) {
+      if (
+        neighbourCoordinates[i].x === hexagon.coordInGrid.x &&
+        neighbourCoordinates[i].y === hexagon.coordInGrid.y
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 
   function displayGridWithSvg() {
     //var downTimer = 0;
@@ -77,9 +109,22 @@ export function GridDisplay({ subLeftHexagonGrigSize, setCurrentHexagon }) {
             //setGrid(previousgrid);
           }}
           onClick={() => {
-            setCurrentHexagon(hexagon);
-            setPosCaracterInSvg(hexagon.coordCenter);
-            setPosCaracterInGrid(hexagon.coordInGrid);
+            if (testIfNeighbour(hexagon, neighbourCoordinates) === true) {
+              setCurrentHexagon(hexagon);
+              setNeighbourCoordinates(
+                getNeighbourCoordinateOfOneHexagone(
+                  hexagon.coordInGrid.x,
+                  hexagon.coordInGrid.y,
+                  grid.numberColumn,
+                  grid.numberRow,
+                ),
+              );
+              setPosCaracterInSvg(hexagon.coordCenter);
+              setPosCaracterInGrid(hexagon.coordInGrid);
+            }
+            console.log(" hexagon  :", hexagon.coordInGrid);
+            console.log("Current hexagon  :", currentHexagon.coordInGrid);
+            console.log("voisins : ", neighbourCoordinates);
           }}
           onMouseEnter={() => {
             //need to declare a new grid to refresh memory
@@ -159,6 +204,8 @@ export function GridDisplay({ subLeftHexagonGrigSize, setCurrentHexagon }) {
         setPosCaracterInGrid={setPosCaracterInGrid}
         posCaracterInSvg={posCaracterInSvg}
         setPosCaracterInSvg={setPosCaracterInSvg}
+        neighboursAreDisplay={neighboursAreDisplay}
+        setNeighboursAreDisplay={setNeighboursAreDisplay}
       />
     </svg>
   );

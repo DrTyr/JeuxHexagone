@@ -7,8 +7,6 @@ import { Answer } from "./Answer";
 export function detectEncounter(randomEncounter, goto) {
   let encounter = emptyEncounter();
 
-  console.log("inside detect encounter : ", randomEncounter.encounterType);
-
   if (randomEncounter === "") {
   } else if (randomEncounter.encounterType === "bandit") {
     encounter = banditEncounter(goto);
@@ -37,14 +35,10 @@ function banditEncounter(goto) {
     goto = sceneA;
   }
 
-  console.log("goto = ", goto);
-
   return goto;
 }
 
 function mageEncounter(goto) {
-  const exit = "exit";
-
   const sceneA = new Dialog(
     OldWizzard,
     "Bonjour aventurier, je suis un vieux mage qui sert de test pour le développement de rencontres avec les PNJ, j'ai volontairement un texte très long qui a pour but de tester que ce dernier ne dépasse pas de la <div> qui le contient, si tu arrives à tout lire c'est que ça fonctionne comme prévu, d'ailleurs pour les besoin du test j'ai décidé d'augmenter grandement la taille de ce que je raconte, juste pour voir si la div s'accord ou si texte diminue, je ne sais aps encore comment ça va s'afficher je vais voir",
