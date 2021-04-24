@@ -21,34 +21,52 @@ export function EncounterDisplay(encounterType) {
     width: 0,
     height: 0,
   });
+  const [scene, setscene] = useState(detectEncounter(encounterType));
 
   useEffect(() => {
     setEncounterImageSize({
       width: document.getElementById("Encounter-Image").clientWidth,
       height: document.getElementById("Encounter-Image").clientHeight,
     });
-  }, []);
+    setscene(detectEncounter(encounterType));
+  }, [encounterType]);
+
+  console.log("Scene =", scene);
+
+  function detectSceneToDisplay() {}
+
+  function answersToDisplay() {
+    if (scene.answers.length === 0) {
+      return null;
+    }
+
+    return scene.answers.map(answer => (
+      <button
+        onClick={() => {
+          setscene(detectEncounter(encounterType, answer.goto));
+        }}
+      >
+        {answer.text}
+      </button>
+    ));
+  }
 
   //let encounter = { text: "testtext", answer: "testanswer" };
-
-  let encounter = detectEncounter(encounterType);
 
   return (
     <Fragment>
       <div className="Encounter-Image-Text">
         <div className="Encounter-Image" id="Encounter-Image">
           <img
-            src={encounter.picture.src}
+            src={scene.picture}
             alt=""
             width={encounterImageSize.width}
             height={encounterImageSize.height}
           />
         </div>
-        <div className="Encounter-Text">{encounter.text}</div>
+        <div className="Encounter-Text">{scene.text}</div>
       </div>
-      <div className="Encounter-Answers">
-        <button>{encounter.answer}</button>
-      </div>
+      <div className="Encounter-Answers">{answersToDisplay()}</div>
     </Fragment>
   );
 }

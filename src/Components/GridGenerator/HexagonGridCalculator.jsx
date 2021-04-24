@@ -104,15 +104,18 @@ function generateAllTheHexagones(grid) {
 }
 
 //WIP randomly fill on hexagone.fill with adress of IMG (currently not working)
-function randomlyFillhexagoneWithBanditCampImg(grid) {
+function randomlyFillhexagoneWithEncounter(grid) {
   //return objet coordinate with x and y of a random hexagon
   let coordonate = getCoordonateRandomHexagoneInGrid(grid);
-  //let coordonate2 = getCoordonateRandomHexagoneInGrid(grid);
+  let coordonate2 = getCoordonateRandomHexagoneInGrid(grid);
   //
 
   //grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#grass)";
   grid.hexagons[coordonate.x][coordonate.y].fill = "url(#banditCamp)";
   grid.hexagons[coordonate.x][coordonate.y].encounterType = "bandit";
+
+  grid.hexagons[coordonate2.x][coordonate2.y].fill = "url(#grass)";
+  grid.hexagons[coordonate2.x][coordonate2.y].encounterType = "mage";
 
   return grid;
 }
@@ -128,7 +131,7 @@ export function generateEntireGrid() {
   };
 
   grid = generateAllTheHexagones(grid);
-  grid = randomlyFillhexagoneWithBanditCampImg(grid);
+  grid = randomlyFillhexagoneWithEncounter(grid);
 
   return grid;
 }
