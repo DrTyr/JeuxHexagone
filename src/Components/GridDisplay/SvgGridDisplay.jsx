@@ -68,19 +68,19 @@ export function GridDisplay({
   //   //displayCurrentHexagon();
   // }, []);
 
-  console.log("neighbourCoordinate length", neighbourCoordinates.length);
-
   function testIfNeighbour(hexagon, neighbourCoordinates) {
+    let isneighbours = false;
+
     for (let i = 0; i < neighbourCoordinates.length; i++) {
       if (
         neighbourCoordinates[i].x === hexagon.coordInGrid.x &&
         neighbourCoordinates[i].y === hexagon.coordInGrid.y
       ) {
-        return true;
-      } else {
-        return false;
+        isneighbours = true;
       }
     }
+
+    return isneighbours;
   }
 
   function displayGridWithSvg() {
@@ -109,28 +109,25 @@ export function GridDisplay({
             //setGrid(previousgrid);
           }}
           onClick={() => {
+            //let hexagontest = hexagon;
             if (testIfNeighbour(hexagon, neighbourCoordinates) === true) {
               setCurrentHexagon(hexagon);
-              setNeighbourCoordinates(
-                getNeighbourCoordinateOfOneHexagone(
-                  hexagon.coordInGrid.x,
-                  hexagon.coordInGrid.y,
-                  grid.numberColumn,
-                  grid.numberRow,
-                ),
-              );
               setPosCaracterInSvg(hexagon.coordCenter);
               setPosCaracterInGrid(hexagon.coordInGrid);
+              let neighbours = getNeighbourCoordinateOfOneHexagone(
+                hexagon.coordInGrid.x,
+                hexagon.coordInGrid.y,
+                grid.numberColumn,
+                grid.numberRow,
+              );
+              setNeighbourCoordinates(neighbours);
             }
-            console.log(" hexagon  :", hexagon.coordInGrid);
-            console.log("Current hexagon  :", currentHexagon.coordInGrid);
-            console.log("voisins : ", neighbourCoordinates);
           }}
           onMouseEnter={() => {
             //need to declare a new grid to refresh memory
-            let grid2 = { ...grid };
-            hexagon.color = getRandomColor();
-            setGrid(grid2);
+            // let grid2 = { ...grid };
+            // hexagon.color = getRandomColor();
+            // setGrid(grid2);
           }}
           onMouseLeave={() => {}}
         >
@@ -138,6 +135,8 @@ export function GridDisplay({
             points={getHexagonCoordPointInString(hexagon)}
             fill={hexagonFillTest(hexagon)}
             opacity={hexagon.opacity}
+            stroke={hexagon.stroke}
+            strokeWidth={hexagon.strokeWidth}
           />
 
           <text

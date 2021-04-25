@@ -65,6 +65,8 @@ function generateAllTheHexagones(grid) {
         color: "",
         fill: "",
         opacity: 1,
+        stroke: null,
+        strokeWidth: 5,
         encounterType: null,
       };
 

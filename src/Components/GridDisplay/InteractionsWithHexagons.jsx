@@ -10,9 +10,9 @@ export function displayNeighbours(hexagon, grid) {
     grid.numberRow,
   );
 
-  //Set the opacity of every hexagon of the grid to 0.3
+  //Set the opacity of every hexagon of the grid to 0.2
   grid.hexagons.map(hexagons =>
-    hexagons.map(hexagon => (hexagon.opacity = 0.3)),
+    hexagons.map(hexagon => (hexagon.opacity = 0.2)),
   );
 
   //Set back the opacity of the neighbours to 1
@@ -20,6 +20,11 @@ export function displayNeighbours(hexagon, grid) {
     grid.hexagons[neighbourCoordinate[i].x][
       neighbourCoordinate[i].y
     ].opacity = 1;
+    grid.hexagons[neighbourCoordinate[i].x][neighbourCoordinate[i].y].stroke =
+      "black";
+    grid.hexagons[neighbourCoordinate[i].x][
+      neighbourCoordinate[i].y
+    ].strokeWidth = 3;
   }
 
   return grid;

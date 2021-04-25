@@ -40,7 +40,7 @@ export function EncounterDisplay(encounterType) {
 
     return scene.answers.map(answer => (
       <button
-        class="button"
+        className="button"
         onClick={() => {
           setscene(detectEncounter(encounterType, answer.goto));
         }}

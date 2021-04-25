@@ -1,5 +1,5 @@
 //Library imports//////////////////////////////////////////
-import React, { useState } from "react";
+//import react from "react";
 import _ from "lodash";
 ///////////////////////////////////////////////////////////
 
@@ -42,7 +42,7 @@ export function DisplayCaracter({
       //     ),
       //   );
       // }}
-      onClick={() => {
+      onMouseEnter={() => {
         if (neighboursAreDisplay === false) {
           setNeighboursAreDisplay(true);
           let grid2 = { ...grid };
@@ -53,10 +53,6 @@ export function DisplayCaracter({
               grid2,
             ),
           );
-        }
-        if (neighboursAreDisplay === true) {
-          setNeighboursAreDisplay(false);
-          setGrid(previousgrid);
         }
       }}
       //   onMouseMove={e => {
@@ -72,7 +68,12 @@ export function DisplayCaracter({
       //   setGrid(previousgrid);
       //   // setIsPushedDown(false);
       // }}
-      // onMouseLeave={() => {
+      onMouseLeave={() => {
+        if (neighboursAreDisplay === true) {
+          setNeighboursAreDisplay(false);
+          setGrid(previousgrid);
+        }
+      }}
       //   setGrid(previousgrid);
       // setIsPushedDown(false);
       // }}
