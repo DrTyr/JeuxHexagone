@@ -17,11 +17,13 @@ import { hexagonFillTest } from "./InteractionsWithHexagons";
 import DisplayCaracter from "../PlayableCaracterDisplay/CaracterDisplay";
 //import "./GridFill";
 import { getNeighbourCoordinateOfOneHexagone } from "../GridGenerator/HexagonGridCalculator.jsx";
+import { getCoordListOfOutsidesHexagones } from "../GridGenerator/mapgenerator";
 ///////////////////////////////////////////////////////////
 
 //Assets imports///////////////////////////////////////////
 import banditCamp from "../../Assets/BanditCamp.jpg";
 import grass from "../../Assets/Grass.png";
+import beach from "../../Assets/Beach.png";
 ///////////////////////////////////////////////////////////
 
 //React Component names MUST begin with a maj so React know its a component
@@ -67,6 +69,11 @@ export function GridDisplay({
   //   //To resize displayCurrentHexagon, create it a as react component with his own useEffect ?
   //   //displayCurrentHexagon();
   // }, []);
+
+  // console.log(
+  //   "getCoordListOfOutsidesHexagones :",
+  //   getCoordListOfOutsidesHexagones(grid),
+  // );
 
   function testIfNeighbour(hexagon, neighbourCoordinates) {
     let isneighbours = false;
@@ -180,6 +187,26 @@ export function GridDisplay({
                 height="310"
               />
             </pattern>
+            <pattern
+              id="beach"
+              // patternUnits="objectBoundingBox"
+              x="0"
+              y="0"
+              width="1"
+              height="1"
+              //view Box 0 0 and size of the img
+              viewBox="0 0 314 314"
+              preserveAspectRatio="xMidYMid slice"
+            >
+              <image
+                //rotate="90deg"
+                transform={`rotate(${hexagon.rotateAngle} 157 157)`}
+                href={beach}
+                //size of the img
+                width="314"
+                height="314"
+              />
+            </pattern>
           </defs>
         </g>
       )),
@@ -188,8 +215,10 @@ export function GridDisplay({
 
   return (
     <svg
-      viewBox={`0 0 ${subLeftHexagonGrigSize.width * 1.3} ${
-        subLeftHexagonGrigSize.height * 1.3
+      // width={subLeftHexagonGrigSize.width}
+      // height={subLeftHexagonGrigSize.height}
+      viewBox={`0 0 ${subLeftHexagonGrigSize.width * 1.5} ${
+        subLeftHexagonGrigSize.height * 1.5
       }`}
       preserveAspectRatio="xMidYMid meet"
     >

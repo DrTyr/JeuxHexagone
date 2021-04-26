@@ -44,6 +44,8 @@ export function DisplayCurrentHexagon({
   hexagonDisplayed = {
     ...hexagonDisplayed,
     size: (45 / 100) * topRightHexagonDisplaySize.height,
+    stroke: "black",
+    strokeWidth: 5,
   };
 
   //Change coordCenter after for hexagonDisplayed.size to be update
@@ -68,7 +70,8 @@ export function DisplayCurrentHexagon({
       <polygon
         points={getHexagonCoordPointInString(hexagonDisplayed)}
         fill={hexagonFillTest(hexagonDisplayed)}
-        stroke="black"
+        stroke={hexagonDisplayed.stroke}
+        strokeWidth={hexagonDisplayed.strokeWidth}
       />
     </svg>
   );

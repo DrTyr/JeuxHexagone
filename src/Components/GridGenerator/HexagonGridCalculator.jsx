@@ -1,14 +1,15 @@
 //Functions imports////////////////////////////////////////
 import { getRandomColor } from "../../library";
+import { generateMap } from "./mapgenerator";
 ///////////////////////////////////////////////////////////
 
 //Global variables////////////////////////////////////////
 const PI = Math.PI;
 const cos = Math.cos;
 const sin = Math.sin;
-// !!!!!! row and column are inverted, to expend the grid width add one more Row
-const numberColumn = 8;
-const numberRow = 9;
+///grid[numberColumn][numberRow]
+const numberColumn = 6;
+const numberRow = 10;
 const hexagonSizes = 60;
 const xFirstHexagonCenter = hexagonSizes;
 const yFirstHexagonCenter = hexagonSizes;
@@ -52,10 +53,10 @@ export function getOnehexagonAllSummitCoordinate(hexagon) {
 function generateAllTheHexagones(grid) {
   let hexagonIndice = 0;
 
-  for (let i = 0; i < grid.numberRow; i++) {
+  for (let i = 0; i < grid.numberColumn; i++) {
     grid.hexagons[i] = [];
 
-    for (let j = 0; j < grid.numberColumn; j++) {
+    for (let j = 0; j < grid.numberRow; j++) {
       let hexagon = {
         indice: 0,
         coordInGrid: { x: 0, y: 0 },
@@ -68,6 +69,7 @@ function generateAllTheHexagones(grid) {
         stroke: null,
         strokeWidth: 5,
         encounterType: null,
+        rotateAngle: 0,
       };
 
       //Testing if drawing odd or even column i
@@ -98,6 +100,8 @@ function generateAllTheHexagones(grid) {
       grid.hexagons[i][j] = hexagon;
     }
   }
+
+  console.log("grid : ", grid);
 
   return grid;
 }
@@ -132,6 +136,7 @@ export function generateEntireGrid() {
 
   grid = generateAllTheHexagones(grid);
   grid = randomlyFillhexagoneWithEncounter(grid);
+  grid = generateMap(grid);
 
   return grid;
 }
@@ -142,7 +147,7 @@ export function getCoordonateRandomHexagoneInGrid(grid) {
   let randomColumn = Math.floor(Math.random() * grid.numberColumn);
   let randomRow = Math.floor(Math.random() * grid.numberRow);
 
-  let coordonate = { x: randomRow, y: randomColumn };
+  let coordonate = { x: randomColumn, y: randomRow };
 
   return coordonate;
 }
@@ -182,9 +187,9 @@ export function getNeighbourCoordinateOfOneHexagone(
   neighbourCoordinate.slice(0).forEach(function (coordNeighbours) {
     if (
       coordNeighbours.x < 0 ||
-      coordNeighbours.x > nbRowInGrid - 1 ||
+      coordNeighbours.y > nbRowInGrid - 1 ||
       coordNeighbours.y < 0 ||
-      coordNeighbours.y > nbColumnInGrid - 1
+      coordNeighbours.x > nbColumnInGrid - 1
     ) {
       neighbourCoordinate.splice(
         neighbourCoordinate.indexOf(coordNeighbours),
@@ -192,6 +197,8 @@ export function getNeighbourCoordinateOfOneHexagone(
       );
     }
   });
+
+  console.log("neighbourCoordinate : ", neighbourCoordinate);
 
   return neighbourCoordinate;
 }

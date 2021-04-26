@@ -9,7 +9,7 @@ body {
   margin: 0;
   height: 100vh;
   /* background-color: rgb(59, 129, 112); */
-  background-image: url(/Users/alois/DocumentHL/ApprentissageHTML/JeuxHexagone/src/Assets/waterTile.png);
+  background-image: url(/Users/alois/DocumentHL/ApprentissageHTML/JeuxHexagone/src/Assets/Bloup.png);
   background-repeat: repeat;
   display: flex;
 }
@@ -38,6 +38,6 @@ body {
 .downRight-encounter {
   width: 100%;
   height: 70%;
-  background-color: red;
+  background-color: white;
   margin: 0;
 }

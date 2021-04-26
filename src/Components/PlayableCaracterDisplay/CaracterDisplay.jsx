@@ -4,6 +4,7 @@ import _ from "lodash";
 ///////////////////////////////////////////////////////////
 
 //CSS imports/////////////////////////////////////////////
+import "./CaracterDisplay.css";
 ///////////////////////////////////////////////////////////
 
 //Functions imports////////////////////////////////////////
@@ -11,7 +12,8 @@ import { displayNeighbours } from "../GridDisplay/InteractionsWithHexagons";
 ///////////////////////////////////////////////////////////
 
 //Assets imports///////////////////////////////////////////
-import knight from "../../Assets/knight.jpg";
+// import knight from "../../Assets/knight.jpg";
+import player from "../../Assets/Pirate.png";
 ///////////////////////////////////////////////////////////
 
 export function DisplayCaracter({
@@ -30,6 +32,7 @@ export function DisplayCaracter({
 
   return (
     <g
+      className="caracter"
       key="Caracter"
       // onMouseDown={() => {
       //   setIsPushedDown(true);
@@ -84,20 +87,21 @@ export function DisplayCaracter({
         //x and y pos are x = pos - width/2 and  y = pos-height/2
         x={posCaracterInSvg.x - 30}
         y={posCaracterInSvg.y - 30}
-        fill="url(#knight)"
+        fill="url(#player)"
+        //fillOpacity="0.3"
       />
 
       <defs>
         <pattern
-          id="knight"
+          id="player"
           x="0"
           y="0"
           width="1"
           height="1"
-          viewBox="0 0 900 900"
-          preserveAspectRatio="xMidYMid slice"
+          viewBox="0 0 382 412"
+          //preserveAspectRatio="xMidYMid slice"
         >
-          <image width="900" height="900" href={knight} />
+          <image width="382" height="412" href={player} />
         </pattern>
       </defs>
     </g>

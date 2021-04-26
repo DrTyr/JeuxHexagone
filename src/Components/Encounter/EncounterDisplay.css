@@ -1,7 +1,7 @@
 .Encounter-Image-Text {
   width: 100%;
   height: 30%;
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
   margin: 0;
   display: flex;
   flex-direction: row;
@@ -12,7 +12,7 @@
 .Encounter-Image {
   width: 20%;
   height: 100%;
-  background-color: salmon;
+  /* background-color: salmon; */
   margin: 0;
   /* display: flex; */
   /* flex-direction: row; */
@@ -25,7 +25,7 @@
 .Encounter-Text {
   width: 80%;
   height: 100%;
-  background-color: silver;
+  /* background-color: silver; */
   margin: 0;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
 .Encounter-Answers {
   width: 100%;
   height: 70%;
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   margin: 0;
   display: flex;
   align-items: center;
